@@ -13,7 +13,7 @@ public class Enemy extends Sprite {
     private Player player;
 
     public Enemy(float x, float y, Handler handler) {
-        super(x, y, MAX_HEALTH, handler);
+        super(x, y, MAX_HEALTH, true, handler);
         player = handler.getPlayer();
     }
 

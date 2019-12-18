@@ -1,18 +1,19 @@
 package gameObjects;
 
-import framework.MovingObject;
+import framework.Sprite;
 import main.Handler;
 
 import java.awt.*;
 
-public class Bullet extends MovingObject {
+public class Bullet extends Sprite {
     public static final int WIDTH = 10, HEIGHT = 10;
+    private final int IMG_DELTA = 17;
 
     public boolean isDangerous;
     private long startTime;
 
     public Bullet(float x, float y, float speedX, Handler handler) {
-        super(x, y, handler);
+        super(x, y, 1, false, handler);
         this.speedX = speedX;
         isDangerous = true;
         startTime = System.currentTimeMillis();
@@ -68,6 +69,18 @@ public class Bullet extends MovingObject {
     public void render(Graphics2D graphics2D) {
         graphics2D.setColor(new Color(0, 200, 150));
         graphics2D.drawRect((int) x, (int) y, WIDTH, HEIGHT);
+        drawAnimation(graphics2D);
+    }
+
+    @Override
+    protected void drawAnimation(Graphics2D graphics2D) {
+        if (speedX < 0) {
+            graphics2D.drawImage(animation.getSpriteImage(10, false, textures.getBulletLeft()),
+                    (int) x - 2 * IMG_DELTA - 2, (int) y - IMG_DELTA - 9, 64, 64, null);
+        } else {
+            graphics2D.drawImage(animation.getSpriteImage(10, false, textures.getBulletRight()),
+                    (int) x - IMG_DELTA, (int) y - IMG_DELTA - 9, 64, 64, null);
+        }
     }
 
     @Override

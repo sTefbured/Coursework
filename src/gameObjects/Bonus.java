@@ -11,7 +11,7 @@ public class Bonus extends Sprite {
     private long startTime;
 
     public Bonus(float x, float y, Handler handler) {
-        super(x, y, 1, handler);
+        super(x, y, 1, false, handler);
         this.handler = handler;
         speedX = 3;
         isFalling = true;

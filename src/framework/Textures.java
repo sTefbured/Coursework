@@ -15,6 +15,10 @@ public class Textures {
     private BufferedImage[] playerDieRight;
     private BufferedImage[] playerRunLeft;
     private BufferedImage[] playerRunRight;
+
+    private BufferedImage[] bulletLeft;
+    private BufferedImage[] bulletRight;
+
     private BufferedImage[] blocks;
     private BufferedImage spikes;
 
@@ -29,6 +33,10 @@ public class Textures {
         playerDieRight = getSpriteArray("/player/player_die_right.png");
         playerRunLeft = getSpriteArray("/player/player_run_left.png");
         playerRunRight = getSpriteArray("/player/player_run_right.png");
+
+        bulletLeft = getSpriteArray("/bullet/bullet_left.png");
+        bulletRight = getSpriteArray("/bullet/bullet_right.png");
+
         blocks = getSpriteArray("/blocks/blocks.png");
 
         try {
@@ -88,6 +96,14 @@ public class Textures {
 
     public BufferedImage[] getPlayerRunRight() {
         return playerRunRight;
+    }
+
+    public BufferedImage[] getBulletLeft() {
+        return bulletLeft;
+    }
+
+    public BufferedImage[] getBulletRight() {
+        return bulletRight;
     }
 
     public BufferedImage[] getBlocks() {

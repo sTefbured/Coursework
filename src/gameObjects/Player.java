@@ -15,11 +15,10 @@ public class Player extends Sprite {
     private static final int MAX_HEALTH = 100;
 
     private Camera camera;
-    private boolean isFacingLeft;
     private Font font;
 
     public Player(float x, float y, Handler handler) {
-        super(x, y, MAX_HEALTH, handler);
+        super(x, y, MAX_HEALTH, true, handler);
         this.camera = null;
         isGettingDamage = false;
         isFacingLeft = false;
@@ -146,10 +145,10 @@ public class Player extends Sprite {
     public void shoot() {
         isShooting = true;
         if (isFacingLeft) {
-            handler.getBullets().add(new Bullet(x - Bullet.WIDTH - 5, y + (float) WIDTH / 2,
+            handler.getBullets().add(new Bullet(x - Bullet.WIDTH - 5, y + (float) WIDTH / 2 + 10,
                     -20 + speedX, handler));
         } else {
-            handler.getBullets().add(new Bullet(x + WIDTH + 5, y + (float) WIDTH / 2,
+            handler.getBullets().add(new Bullet(x + WIDTH + 5, y + (float) WIDTH / 2 + 10,
                     20 + speedX, handler));
         }
         timerShooting = System.currentTimeMillis();

@@ -14,12 +14,14 @@ public abstract class Sprite extends MovingObject {
     protected boolean isJumping;
     public boolean isShooting;
     public boolean isGettingDamage;
+    protected boolean isFacingLeft;
     public long timerShooting;
     public long timerGettingDamage;
 
-    protected Sprite(float x, float y, int healthPoints, Handler handler) {
+    protected Sprite(float x, float y, int healthPoints, boolean isFacingLeft, Handler handler) {
         super(x, y, handler);
         this.healthPoints = healthPoints;
+        this.isFacingLeft = isFacingLeft;
         animation = new Animation();
 
         speedX = speedY = 0;
