@@ -143,4 +143,8 @@ public abstract class Sprite extends MovingObject {
     public void getDamage(int damagePoints) {
         healthPoints -= damagePoints;
     }
+
+    public boolean getIsFacingLeft() {
+        return isFacingLeft;
+    }
 }

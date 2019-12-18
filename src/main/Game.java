@@ -80,7 +80,6 @@ public class Game extends Canvas {
             }
             bufferStrategy = getBufferStrategy();
             requestFocus();
-            System.out.println(currentState);
             while (!isRunning) {
                 showMenu();
             }

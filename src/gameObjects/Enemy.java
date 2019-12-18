@@ -15,10 +15,16 @@ public class Enemy extends Sprite {
     public Enemy(float x, float y, Handler handler) {
         super(x, y, MAX_HEALTH, true, handler);
         player = handler.getPlayer();
+        speedX = 3;
     }
 
     @Override
     public void update() {
+        if (speedX > 0) {
+            isFacingLeft = false;
+        } else if (speedX < 0) {
+            isFacingLeft = true;
+        }
         if (isShooting && ((System.currentTimeMillis() - timerShooting) >= 700)) {
             isShooting = false;
         }
@@ -27,49 +33,83 @@ public class Enemy extends Sprite {
             isDead = true;
         }
         super.update();
+
+        float distance = (x + WIDTH / 2.0f) - (player.getX() + player.getWidth() / 2.0f);
         if (seePlayer()) {
-            attack();
+            if (Math.abs(distance) <= VISIBILITY_RANGE / 4.0f) {
+                speedX = 0;
+                attack();
+            } else {
+                chasePlayer(distance);
+            }
+        } else {
+            search();
+        }
+    }
+
+    private void chasePlayer(float distance) {
+        if (distance < 0) {
+            speedX = 3;
+        } else {
+            speedX = -3;
         }
     }
 
     private boolean seePlayer() {
-        return getVisibilityBounds().intersects(player.getBounds());
+        return (getVisibilityBounds().intersects(player.getBounds()) && (isLookingOnPlayer()));
     }
 
-    private void attack() {
-        float distance = (x + WIDTH / 2.0f) - (player.getX() + player.getWidth() / 2.0f);
-        if (Math.abs(distance) <= VISIBILITY_RANGE / 4.0f) {
-            if (!isShooting) {
-                shoot(distance);
-            }
+    private boolean isLookingOnPlayer() {
+        if (isFacingLeft && ((x - player.getX()) > 0)) {
+            return true;
+        } else {
+            return !isFacingLeft && ((x - player.getX()) < 0);
         }
     }
 
-    private void shoot(float distance) {
+    private void attack() {
+        if (!isShooting) {
+            shoot();
+        }
+    }
+
+    private void shoot() {
         isShooting = true;
         timerShooting = System.currentTimeMillis();
-        if (distance < 0) {
+        if (!isFacingLeft) {
             handler.getBullets().add(new Bullet(x + WIDTH + 5, y + (float) WIDTH / 2,
                     20, handler));
-        } else if (distance > 0) {
+        } else {
             handler.getBullets().add(new Bullet(x - Bullet.WIDTH - 5, y + (float) WIDTH / 2,
                     -20, handler));
+        }
+    }
+
+    private void search() {
+        if (speedX == 0) {
+            if (isFacingLeft) {
+                speedX = -3;
+            } else {
+                speedX = 3;
+            }
         }
     }
 
     @Override
     protected void collision() {
         super.collision();
-//        bulletCollision();
     }
 
-//    private void bulletCollision() {
-//        for (Bullet bullet : handler.getBullets()) {
-//            if (getBounds().intersects(bullet.getBounds())) {
-//                isDead = true;
-//            }
-//        }
-//    }
+    @Override
+    protected void sideBlockCollision(Block block) {
+        if (getLeftBounds().intersects(block.getBounds())) {
+            x = block.getX() + block.getWidth();
+            speedX = 3;
+        } else if (getRightBounds().intersects(block.getBounds())) {
+            x = block.getX() - getWidth();
+            speedX = -3;
+        }
+    }
 
     @Override
     public void render(Graphics2D graphics2D) {
