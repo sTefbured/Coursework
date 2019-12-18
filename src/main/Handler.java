@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Handler {
+    private Game game;
+
     private Player player;
     private List<Enemy> enemies;
     private List<MysteryBox> mysteryBoxes;
@@ -16,7 +18,8 @@ public class Handler {
     private List<Bullet> bullets;
     private List<LevelEnd> levelEnds;
 
-    public Handler() {
+    public Handler(Game game) {
+        this.game = game;
         enemies = new ArrayList<>();
         mysteryBoxes = new ArrayList<>();
         blocks = new ArrayList<>();
@@ -24,6 +27,7 @@ public class Handler {
         spikes = new ArrayList<>();
         bullets = new ArrayList<>();
         levelEnds = new ArrayList<>();
+        player = new Player(0, 0, this);
     }
 
     public List<Enemy> getEnemies() {
@@ -59,19 +63,27 @@ public class Handler {
     }
 
     public void addPlayer(Player player) {
-        if (this.player == null) {
-            this.player = player;
-        }
+        this.player = player;
     }
 
     public void update() {
         if (player == null) {
             return;
         }
+        if (player.isDead) {
+            game.currentState = Game.State.MAIN_MENU; ///patom
+            game.currentState.isChanged = true;
+            return;
+        }
         player.update();
 
-        for (Enemy enemy : enemies) {
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy enemy = enemies.get(i);
             enemy.update();
+            if (enemy.isDead) {
+                enemies.remove(enemy);
+                i--;
+            }
         }
 
         for (int i = 0, size = bonuses.size(); i < size; i++) {
@@ -120,9 +132,6 @@ public class Handler {
             bullet.render(graphics2D);
         }
 
-        if (player == null) {
-            System.exit(0);
-        }
         player.render(graphics2D);
     }
 
@@ -134,6 +143,6 @@ public class Handler {
         spikes.clear();
         bullets.clear();
         levelEnds.clear();
-        player = null;
+//        player = null;
     }
 }

@@ -11,6 +11,14 @@ public class LevelEnd {
         this.y = y;
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, WIDTH, HEIGHT);
     }

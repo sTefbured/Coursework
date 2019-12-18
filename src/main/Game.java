@@ -1,10 +1,13 @@
 package main;
 
 import framework.KeyInput;
-import framework.Menu;
 import framework.Textures;
 import gameObjects.Block;
 import gameObjects.Player;
+import menus.Credits;
+import menus.GameOver;
+import menus.LevelsList;
+import menus.MainMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +15,8 @@ import java.awt.image.BufferStrategy;
 import java.io.File;
 
 public class Game extends Canvas {
-    public static final int WINDOW_WIDTH = 30 * Block.WIDTH, WINDOW_HEIGHT = 830; // 30x25 blocks
-    private static final String title = "My platformer";
+    public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 830; // 30x25 blocks
+    public static final String title = "My platformer";
     private static final Image iconImage = new ImageIcon("res/icon.png").getImage();
     private static final Image[] background = new Image[]{
             new ImageIcon("res/bglayer0.png").getImage(),
@@ -21,56 +24,106 @@ public class Game extends Canvas {
             new ImageIcon("res/bglayer2.png").getImage(),
     };
 
-    //    private Thread thread;
+    public enum State {
+        MAIN_MENU,
+        LEVELS_LIST,
+        CREDITS,
+        RUNNING,
+        PAUSE,
+        GAME_OVER;
+
+        public boolean isChanged;
+    }
+
     public static Font font;
-    public boolean isRunning;
+    public static boolean isRunning;
     private Handler handler;
     private Camera camera;
     private static Textures textures;
     private LevelLoader levelLoader;
-    private int currentLevel;
     BufferStrategy bufferStrategy;
+    public State currentState;
+    private KeyInput keyInput;
+
+    private MainMenu mainMenu;
+    private LevelsList levelsList;
+    private Credits credits;
+    private GameOver gameOver;
 
     private Game() {
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE_INV.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE.ttf"));
         } catch (Exception e) {
             e.printStackTrace();
         }
         isRunning = false;
+        textures = new Textures();
+        handler = new Handler(this);
+        levelLoader = new LevelLoader(handler, camera, this);
+        currentState = State.MAIN_MENU;
+        currentState.isChanged = true;
+
+        mainMenu = new MainMenu(200, Game.WINDOW_HEIGHT / 2, font,
+                Color.RED, Color.GREEN, this, textures);
+        levelsList = new LevelsList(this);
+        credits = new Credits(this);
+        gameOver = new GameOver(this);
+
+
         new Window(WINDOW_WIDTH, WINDOW_HEIGHT, title, iconImage, this);
     }
 
     public void startMenu() {
-        if (this.getBufferStrategy() == null) {
-            this.createBufferStrategy(3);
+        while (true) {
+            if (getBufferStrategy() == null) {
+                createBufferStrategy(3);
+            }
+            bufferStrategy = getBufferStrategy();
+            requestFocus();
+            System.out.println(currentState);
+            while (!isRunning) {
+                showMenu();
+            }
+            run();
         }
-        bufferStrategy = this.getBufferStrategy();
-        requestFocus();
-        textures = new Textures();
-        framework.Menu menu = new Menu(this, textures);
-//        this.createBufferStrategy(3);
-        this.addKeyListener(menu);
-        while (!isRunning) {
-            Graphics2D graphics2D = (Graphics2D) bufferStrategy.getDrawGraphics();
-            menu.render(graphics2D);
-            graphics2D.dispose();
-            bufferStrategy.show();
+    }
+
+    private void showMenu() {
+        Graphics2D graphics2D = (Graphics2D) bufferStrategy.getDrawGraphics();
+        switch (currentState) {
+            case MAIN_MENU: {
+                loadMainMenu(graphics2D);
+                break;
+            }
+            case LEVELS_LIST: {
+                loadLevelsList(graphics2D);
+                break;
+            }
+            case CREDITS: {
+                loadCredits(graphics2D);
+                break;
+            }
+            case RUNNING: {
+                break;
+            }
+            case PAUSE: {
+                break;
+            }
+            case GAME_OVER: {
+                break;
+            }
         }
-        run();
+        bufferStrategy.show();
     }
 
     private void initGameObjects() {
-        handler = new Handler();
-        this.addKeyListener(new KeyInput(handler));
-        levelLoader = new LevelLoader(handler, bufferStrategy,  camera);
+        keyInput = new KeyInput(handler);
+        addKeyListener(keyInput);
         levelLoader.loadLevel();
         camera = levelLoader.getCamera();
     }
 
-    //    @Override
     private void run() {
-        requestFocus();
         initGameObjects();
         long lastTime = System.nanoTime();
         long currentTime;
@@ -87,11 +140,11 @@ public class Game extends Canvas {
             delta += (currentTime - lastTime) / secPerUpdate;
             lastTime = currentTime;
             while (delta >= 1) {
-                update();
+                updateLevel();
                 updates++;
                 delta--;
             }
-            render();
+            renderLevel();
             frames++;
 
             if (System.nanoTime() - time >= oneSecond) {
@@ -99,14 +152,28 @@ public class Game extends Canvas {
                 System.out.println("FPS: " + frames + " updates: " + updates);
                 updates = frames = 0;
             }
+
+            if (!isRunning) {
+                if (handler.getPlayer().isDead) {
+                    gameOver();
+                } else if (LevelLoader.getCurrentLevel() < LevelLoader.numberOfLevels) {
+                    handler.clearLevel();
+                    levelLoader.loadLevel();
+                    isRunning = true;
+                } else {
+                    removeKeyListener(keyInput);
+                    handler.clearLevel();
+                    currentState.isChanged = true;
+                }
+            }
         }
     }
 
-    private void update() {
+    private void updateLevel() {
         handler.update();
     }
 
-    private void render() {
+    private void renderLevel() {
         if (handler.getPlayer() == null) {
             return;
         }
@@ -117,9 +184,6 @@ public class Game extends Canvas {
                 -WINDOW_WIDTH / 2 + Player.WIDTH / 2 + (int) handler.getPlayer().getX(), 0, null);
 
         handler.render(graphics2D);
-        graphics2D.setColor(Color.cyan);
-        graphics2D.dispose();
-
         bufferStrategy.show();
     }
 
@@ -127,11 +191,44 @@ public class Game extends Canvas {
         return textures;
     }
 
-    public void setCurrentLevel(int currentLevel) {
-        this.currentLevel = currentLevel;
+    private void gameOver() {
+//        if (currentState.isChanged) {
+//            addKeyListener(gameOver);
+//        }
+//        gameOver.render((Graphics2D) bufferStrategy.getDrawGraphics());
+
+        currentState = State.MAIN_MENU;
+        currentState.isChanged = true;
+        removeKeyListener(keyInput);
+        handler.clearLevel();
+    }
+
+    private void loadMainMenu(Graphics2D graphics2D) {
+        if (currentState.isChanged) {
+            addKeyListener(mainMenu);
+            currentState.isChanged = false;
+        }
+        mainMenu.render(graphics2D);
+    }
+
+    private void loadLevelsList(Graphics2D graphics2D) {
+        if (currentState.isChanged) {
+            addKeyListener(levelsList);
+            currentState.isChanged = false;
+        }
+        levelsList.render(graphics2D);
+    }
+
+    private void loadCredits(Graphics2D graphics2D) {
+        if (currentState.isChanged) {
+            addKeyListener(credits);
+            currentState.isChanged = false;
+        }
+        credits.render(graphics2D);
     }
 
     public static void main(String[] args) {
-        new Game();
+        Game game = new Game();
+        game.startMenu();
     }
 }

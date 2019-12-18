@@ -6,14 +6,15 @@ import main.Handler;
 import java.awt.*;
 
 public class Bullet extends MovingObject {
-    private final int WIDTH = 10, HEIGHT = 10;
-    private final int MAX_LIFETIME = 3000;
+    public static final int WIDTH = 10, HEIGHT = 10;
 
+    public boolean isDangerous;
     private long startTime;
 
     public Bullet(float x, float y, float speedX, Handler handler) {
         super(x, y, handler);
         this.speedX = speedX;
+        isDangerous = true;
         startTime = System.currentTimeMillis();
     }
 
@@ -27,6 +28,7 @@ public class Bullet extends MovingObject {
 
     @Override
     public void update() {
+        final int MAX_LIFETIME = 3000;
         if ((System.currentTimeMillis() - startTime) >= MAX_LIFETIME) {
             isDead = true;
         }
@@ -36,6 +38,12 @@ public class Bullet extends MovingObject {
 
     @Override
     protected void collision() {
+        Player player = handler.getPlayer();
+        if (getBounds().intersects(player.getBounds())) {
+            player.getDamage(25);
+            isDead = true;
+        }
+
         for (Block block : handler.getBlocks()) {
             if (getBounds().intersects(block.getBounds())) {
                 isDead = true;
@@ -50,6 +58,7 @@ public class Bullet extends MovingObject {
 
         for (Enemy enemy : handler.getEnemies()) {
             if (getBounds().intersects(enemy.getBounds())) {
+                enemy.getDamage(25);
                 isDead = true;
             }
         }

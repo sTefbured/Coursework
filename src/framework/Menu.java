@@ -1,119 +1,48 @@
 package framework;
 
-import framework.Animation;
-import framework.Textures;
-import gameObjects.Player;
-import main.Game;
+import main.LevelLoader;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
 
-public class Menu extends KeyAdapter {
-    private Font font;
-    private Game game;
-    private String[] buttons;
-    private int currentChoice;
-    private Animation animation;
-    private Textures textures;
+public abstract class Menu extends KeyAdapter {
+    private int x, y;
+    protected Font font;
+    protected Color buttonColor, activeButtonColor;
+    protected String[] buttons;
+    protected int currentChoice;
 
-    private enum State {
-        MAIN_MENU,
-        LEVELS,
-        CREDITS
-    }
-
-    private State currentState;
-
-    public Menu(Game game, Textures textures) {
-        super();
-        currentState = State.MAIN_MENU;
-
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE.ttf"));
-        } catch (Exception e) {
-            font = Font.getFont("Arial");
-            e.printStackTrace();
-        }
-
-        this.game = game;
-        buttons = new String[]{
-                "START",
-                "LEVELS",
-                "CREDITS",
-                "EXIT"
-        };
+    protected Menu(int x, int y, Font font, Color buttonColor, Color activeButtonColor, String[] buttons) {
+        this.x = x;
+        this.y = y;
+        this.font = font;
+        this.buttonColor = buttonColor;
+        this.activeButtonColor = activeButtonColor;
+        this.buttons = buttons;
         currentChoice = 0;
-        animation = new Animation();
-        this.textures = textures;
     }
 
-    public void render(Graphics2D graphics2D) {
-        graphics2D.setColor(new Color(51, 40, 255));
-        graphics2D.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
-
-        switch (currentState) {
-            case MAIN_MENU:
-                renderButtons(graphics2D);
-                graphics2D.drawImage(animation.getSpriteImage(20, true, textures.getPlayerRunRight()),
-                        Game.WINDOW_WIDTH / 2 + 200, Game.WINDOW_HEIGHT / 2,
-                        Player.WIDTH, Player.HEIGHT, null);
-                break;
-            case LEVELS:
-                renderLevelsGrid(graphics2D);
-                break;
-            case CREDITS:
-                renderCredits(graphics2D);
-                break;
-        }
-    }
-
-    private void renderButtons(Graphics2D graphics2D) {
-        for (int i = 0; i < buttons.length; i++) {
+    protected void renderButtons(int buttonsCount, Graphics2D graphics2D) {
+        for (int i = 0; i < buttonsCount; i++) {
             if (i == currentChoice) {
                 graphics2D.setFont(font.deriveFont(Font.PLAIN, 40));
-                graphics2D.setColor(Color.GREEN);
+                graphics2D.setColor(activeButtonColor);
             } else {
                 graphics2D.setFont(font.deriveFont(Font.PLAIN, 30));
-                graphics2D.setColor(Color.RED);
+                graphics2D.setColor(buttonColor);
             }
-            graphics2D.drawString(buttons[i], 200, Game.WINDOW_HEIGHT / 2 + i * 50);
+            graphics2D.drawString(buttons[i], x, y + i * 50);
         }
     }
 
-    private void renderCredits(Graphics2D graphics2D) {
-        System.out.println("CREDITS");
-    }
+    public abstract void render(Graphics2D graphics2D);
 
-    private void renderLevelsGrid(Graphics2D graphics2D) {
-        System.out.println("LEVELS GRID");
-    }
-
-    private void pressButton() {
-        switch (currentChoice) {
-            case 0: {
-                game.isRunning = true;
-                break;
-            }
-            case 1: {
-                currentState = State.LEVELS;
-                break;
-            }
-            case 2: {
-                currentState = State.CREDITS;
-                break;
-            }
-            case 3: {
-                System.exit(0);
-                break;
-            }
-        }
-    }
+    protected abstract void pressButton();
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
+    public void keyPressed(KeyEvent keyEvent) {
+        switch (keyEvent.getKeyCode()) {
             case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN: {
                 currentChoice++;
@@ -132,16 +61,6 @@ public class Menu extends KeyAdapter {
             }
             case KeyEvent.VK_ENTER: {
                 pressButton();
-                break;
-            }
-            case KeyEvent.VK_ESCAPE: {
-                switch (currentState) {
-                    case LEVELS:
-                    case CREDITS: {
-                        currentState = State.MAIN_MENU;
-                        break;
-                    }
-                }
                 break;
             }
         }

@@ -7,7 +7,7 @@ public class Spike extends Block {
     private final int HEIGHT = 16;
 
     public Spike(int x, int y) {
-        super(x, y);
+        super(x, y, ObjectColor.SPIKE);
     }
 
     @Override

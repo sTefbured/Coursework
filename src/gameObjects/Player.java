@@ -6,24 +6,28 @@ import main.Game;
 import main.Handler;
 
 import java.awt.*;
+import java.io.File;
 import java.util.List;
 
 public class Player extends Sprite {
-    public static final int WIDTH = 64, HEIGHT = 3 * Block.HEIGHT;
+    public static final int WIDTH = 60, HEIGHT = 3 * Block.HEIGHT;
+    public static final int IMG_DELTA = 10;
+    private static final int MAX_HEALTH = 100;
 
     private Camera camera;
-    private int healthPoints;
-    public boolean isGettingDamage;
-    public boolean isShooting;
-    public long timer;
     private boolean isFacingLeft;
+    private Font font;
 
-    public Player(float x, float y, Handler handler, Camera camera) {
-        super(x, y, handler);
-        this.camera = camera;
-        healthPoints = 100;
+    public Player(float x, float y, Handler handler) {
+        super(x, y, MAX_HEALTH, handler);
+        this.camera = null;
         isGettingDamage = false;
         isFacingLeft = false;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE_INV.ttf"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -31,12 +35,13 @@ public class Player extends Sprite {
         if (healthPoints <= 0) {
             healthPoints = 0;
             isDead = true;
+            Game.isRunning = false;
         }
-        if (isGettingDamage && (System.currentTimeMillis() - timer) >= 500) {
+        if (isGettingDamage && (System.currentTimeMillis() - timerGettingDamage) >= 500) {
             isGettingDamage = false;
             speedX = 0;
         }
-        if (isShooting && (System.currentTimeMillis() - timer) >= 200) {
+        if (isShooting && (System.currentTimeMillis() - timerShooting) >= 200) {
             isShooting = false;
         }
         super.update();
@@ -60,7 +65,7 @@ public class Player extends Sprite {
         super.collision();
         bonusCollision();
         enemyCollision();
-        spikeCollision();
+
         levelEndCollision();
     }
 
@@ -71,8 +76,8 @@ public class Player extends Sprite {
             if (getBounds().intersects(bonus.getBounds())) {
                 bonuses.remove(bonus);
                 healthPoints += 10;
-                if (healthPoints > 100) {
-                    healthPoints = 100;
+                if (healthPoints > MAX_HEALTH) {
+                    healthPoints = MAX_HEALTH;
                 }
                 size--;
                 i--;
@@ -95,22 +100,14 @@ public class Player extends Sprite {
                 speedY = -10;
                 healthPoints -= 15;
                 isGettingDamage = true;
-                timer = System.currentTimeMillis();
+                timerGettingDamage = System.currentTimeMillis();
             } else if (getRightBounds().intersects(enemy.getBounds())) {
                 x = enemy.getX() - getWidth();
                 speedX = -5;
                 speedY = -10;
                 healthPoints -= 15;
                 isGettingDamage = true;
-                timer = System.currentTimeMillis();
-            }
-        }
-    }
-
-    private void spikeCollision() {
-        for (Spike spike : handler.getSpikes()) {
-            if (getBottomBounds().intersects(spike.getBounds())) {
-                healthPoints = 0;
+                timerGettingDamage = System.currentTimeMillis();
             }
         }
     }
@@ -118,10 +115,18 @@ public class Player extends Sprite {
     private void levelEndCollision() {
         for (LevelEnd levelEnd : handler.getLevelEnds()) {
             if (getBounds().intersects(levelEnd.getBounds())) {
+                x = levelEnd.getX() - WIDTH;
                 handler.clearLevel();
+                Game.isRunning = false;
                 break;
             }
         }
+    }
+
+    @Override
+    public void getDamage(int damagePoints) {
+        super.getDamage(damagePoints);
+        isGettingDamage = true;
     }
 
     private void drawHealthBar(Graphics2D graphics2D) {
@@ -133,16 +138,30 @@ public class Player extends Sprite {
                 -camera.getY() + 15);
 
         graphics2D.setColor(Color.WHITE);
-        graphics2D.setFont(Game.font.deriveFont(Font.PLAIN, 20));
+        graphics2D.setFont(font.deriveFont(Font.PLAIN, 20));
         graphics2D.drawString(healthPoints + "%", -camera.getX() + 10 + 10 + healthPoints * 3,
                 -camera.getY() + 10 + 15);
     }
 
     public void shoot() {
         isShooting = true;
-        handler.getBullets().add(new Bullet(x + WIDTH, y + (float) WIDTH / 2,
-                (isFacingLeft ? -20 : 20) + speedX, handler));
-        timer = System.currentTimeMillis();
+        if (isFacingLeft) {
+            handler.getBullets().add(new Bullet(x - Bullet.WIDTH - 5, y + (float) WIDTH / 2,
+                    -20 + speedX, handler));
+        } else {
+            handler.getBullets().add(new Bullet(x + WIDTH + 5, y + (float) WIDTH / 2,
+                    20 + speedX, handler));
+        }
+        timerShooting = System.currentTimeMillis();
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
+    }
+
+    public void setCoordinates(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     @Override
@@ -160,36 +179,36 @@ public class Player extends Sprite {
         if (isFacingLeft) {
             if (isShooting) {
                 graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getPlayerAttackLeft()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (isJumping) {
                 graphics2D.drawImage(animation.getSpriteImage(0, true, textures.getPlayerJumpLeft()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (speedX != 0) {
                 graphics2D.drawImage(animation.getSpriteImage(15, true, textures.getPlayerRunLeft()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (isDead) {
                 graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getPlayerDieLeft()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else {
                 graphics2D.drawImage(animation.getSpriteImage(30, true, textures.getPlayerIdleLeft()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             }
         } else {
             if (isShooting) {
                 graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getPlayerAttackRight()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (isJumping) {
                 graphics2D.drawImage(animation.getSpriteImage(0, true, textures.getPlayerJumpRight()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (speedX != 0) {
                 graphics2D.drawImage(animation.getSpriteImage(15, true, textures.getPlayerRunRight()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (isDead) {
                 graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getPlayerDieRight()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else {
                 graphics2D.drawImage(animation.getSpriteImage(30, true, textures.getPlayerIdleRight()),
-                        (int) x, (int) y, WIDTH, HEIGHT, null);
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             }
         }
     }

@@ -13,7 +13,5 @@ class Window {
         frame.setLocationRelativeTo(null);
         frame.setIconImage(iconImage);
         frame.setVisible(true);
-
-        game.startMenu();
     }
 }

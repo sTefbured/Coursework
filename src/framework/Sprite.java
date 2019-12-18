@@ -1,8 +1,6 @@
 package framework;
 
-import gameObjects.Block;
-import gameObjects.Bonus;
-import gameObjects.MysteryBox;
+import gameObjects.*;
 import main.Handler;
 
 import java.awt.*;
@@ -10,15 +8,23 @@ import java.awt.*;
 public abstract class Sprite extends MovingObject {
     protected final float GRAVITY = 0.5f;
 
+    protected int healthPoints;
     protected Animation animation;
     protected boolean isFalling;
     protected boolean isJumping;
+    public boolean isShooting;
+    public boolean isGettingDamage;
+    public long timerShooting;
+    public long timerGettingDamage;
 
-    protected Sprite(float x, float y, Handler handler) {
+    protected Sprite(float x, float y, int healthPoints, Handler handler) {
         super(x, y, handler);
+        this.healthPoints = healthPoints;
         animation = new Animation();
-        speedX = 0;
-        speedY = 0;
+
+        speedX = speedY = 0;
+        timerGettingDamage = timerShooting = System.currentTimeMillis();
+        isGettingDamage = isShooting = false;
     }
 
     public void setFalling(boolean falling) {
@@ -42,6 +48,8 @@ public abstract class Sprite extends MovingObject {
             bottomBlockCollision(block);
             sideBlockCollision(block);
         }
+
+        spikeCollision();
     }
 
     protected void topBlockCollision(Block block) {
@@ -50,7 +58,8 @@ public abstract class Sprite extends MovingObject {
             speedY = 0;
             isFalling = true;
             if ((block instanceof MysteryBox) && ((MysteryBox) block).isFilled) {
-                handler.getBonuses().add(new Bonus(block.getX() + (float) Block.WIDTH / 2 - (float) Bonus.WIDTH / 2, block.getY() - Bonus.HEIGHT, handler));
+                handler.getBonuses().add(new Bonus(block.getX() + (float) Block.WIDTH / 2 - (float) Bonus.WIDTH / 2,
+                        block.getY() - Bonus.HEIGHT, handler));
                 ((MysteryBox) block).isFilled = false;
             }
         }
@@ -72,6 +81,14 @@ public abstract class Sprite extends MovingObject {
             x = block.getX() + block.getWidth();
         } else if (getRightBounds().intersects(block.getBounds())) {
             x = block.getX() - getWidth();
+        }
+    }
+
+    private void spikeCollision() {
+        for (Spike spike : handler.getSpikes()) {
+            if (getBottomBounds().intersects(spike.getBounds())) {
+                healthPoints = 0;
+            }
         }
     }
 
@@ -119,5 +136,9 @@ public abstract class Sprite extends MovingObject {
         }
 
         collision();
+    }
+
+    public void getDamage(int damagePoints) {
+        healthPoints -= damagePoints;
     }
 }
