@@ -17,6 +17,7 @@ public abstract class Sprite extends MovingObject {
     protected boolean isFacingLeft;
     public long timerShooting;
     public long timerGettingDamage;
+    private long deathTime;
 
     protected Sprite(float x, float y, int healthPoints, boolean isFacingLeft, Handler handler) {
         super(x, y, handler);
@@ -121,20 +122,29 @@ public abstract class Sprite extends MovingObject {
         x += speedX;
         y += speedY;
 
-        if (isFalling || isJumping) {
-            speedY += GRAVITY;
+        if ((healthPoints <= 0) && !isDead) {
+            isDead = true;
+            healthPoints = 0;
+            deathTime = System.currentTimeMillis();
+            speedX = 0;
         }
 
-        if (speedX > MAX_SPEED) {
-            speedX = MAX_SPEED;
-        } else if (speedX < -MAX_SPEED) {
-            speedX = -MAX_SPEED;
-        }
+        if (!isDead) {
+            if (isFalling || isJumping) {
+                speedY += GRAVITY;
+            }
 
-        if (speedY > MAX_SPEED) {
-            speedY = MAX_SPEED;
-        } else if (speedY < -MAX_SPEED) {
-            speedY = -MAX_SPEED;
+            if (speedX > MAX_SPEED) {
+                speedX = MAX_SPEED;
+            } else if (speedX < -MAX_SPEED) {
+                speedX = -MAX_SPEED;
+            }
+
+            if (speedY > MAX_SPEED) {
+                speedY = MAX_SPEED;
+            } else if (speedY < -MAX_SPEED) {
+                speedY = -MAX_SPEED;
+            }
         }
 
         collision();
@@ -144,7 +154,7 @@ public abstract class Sprite extends MovingObject {
         healthPoints -= damagePoints;
     }
 
-    public boolean getIsFacingLeft() {
-        return isFacingLeft;
+    public boolean mustBeRemoved() {
+        return isDead && ((System.currentTimeMillis() - deathTime) >= 2000);
     }
 }

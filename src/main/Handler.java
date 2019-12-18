@@ -70,7 +70,8 @@ public class Handler {
         if (player == null) {
             return;
         }
-        if (player.isDead) {
+        if (player.mustBeRemoved()) {
+            Game.isRunning = false;
             game.currentState = Game.State.MAIN_MENU; ///patom
             game.currentState.isChanged = true;
             return;
@@ -80,7 +81,7 @@ public class Handler {
         for (int i = 0; i < enemies.size(); i++) {
             Enemy enemy = enemies.get(i);
             enemy.update();
-            if (enemy.isDead) {
+            if (enemy.mustBeRemoved()) {
                 enemies.remove(enemy);
                 i--;
             }
@@ -89,7 +90,7 @@ public class Handler {
         for (int i = 0, size = bonuses.size(); i < size; i++) {
             Bonus bonus = bonuses.get(i);
             bonus.update();
-            if (bonus.isDead) {
+            if (bonus.mustBeRemoved()) {
                 bonuses.remove(bonus);
                 size--;
                 i--;
@@ -99,7 +100,7 @@ public class Handler {
         for (int i = 0, size = bullets.size(); i < size; i++) {
             Bullet bullet = bullets.get(i);
             bullet.update();
-            if (bullet.isDead) {
+            if (bullet.mustBeRemoved()) {
                 bullets.remove(bullet);
                 size--;
                 i--;

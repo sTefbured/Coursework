@@ -31,11 +31,6 @@ public class Player extends Sprite {
 
     @Override
     public void update() {
-        if (healthPoints <= 0) {
-            healthPoints = 0;
-            isDead = true;
-            Game.isRunning = false;
-        }
         if (isGettingDamage && (System.currentTimeMillis() - timerGettingDamage) >= 500) {
             isGettingDamage = false;
             speedX = 0;
@@ -88,7 +83,9 @@ public class Player extends Sprite {
         List<Enemy> enemies = handler.getEnemies();
         for (int i = 0, size = enemies.size(); i < size; i++) {
             Enemy enemy = enemies.get(i);
-
+            if (enemy.isDead) {
+                continue;
+            }
             if (getBottomBounds().intersects(enemy.getTopBounds())) {
                 enemies.remove(enemy);
                 i--;

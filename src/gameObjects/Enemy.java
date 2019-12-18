@@ -11,6 +11,7 @@ public class Enemy extends Sprite {
     private static final int MAX_HEALTH = 50;
 
     private Player player;
+    private long deathTime;
 
     public Enemy(float x, float y, Handler handler) {
         super(x, y, MAX_HEALTH, true, handler);
@@ -28,12 +29,10 @@ public class Enemy extends Sprite {
         if (isShooting && ((System.currentTimeMillis() - timerShooting) >= 700)) {
             isShooting = false;
         }
-        if (healthPoints <= 0) {
-            healthPoints = 0;
-            isDead = true;
-        }
         super.update();
-
+        if (isDead) {
+            return;
+        }
         float distance = (x + WIDTH / 2.0f) - (player.getX() + player.getWidth() / 2.0f);
         if (seePlayer()) {
             if (Math.abs(distance) <= VISIBILITY_RANGE / 4.0f) {
@@ -68,7 +67,7 @@ public class Enemy extends Sprite {
     }
 
     private void attack() {
-        if (!isShooting) {
+        if (!isShooting && !player.isDead) {
             shoot();
         }
     }
@@ -121,7 +120,6 @@ public class Enemy extends Sprite {
 
     @Override
     protected void drawAnimation(Graphics2D graphics2D) {
-
     }
 
     public Rectangle getVisibilityBounds() {
