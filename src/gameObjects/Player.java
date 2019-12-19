@@ -208,4 +208,9 @@ public class Player extends Sprite {
             }
         }
     }
+
+    public void setAlive() {
+        isDead = false;
+        healthPoints = MAX_HEALTH;
+    }
 }

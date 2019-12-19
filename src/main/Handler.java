@@ -69,7 +69,7 @@ public class Handler {
     public void update() {
         if (player.mustBeRemoved()) {
             Game.isRunning = false;
-            game.currentState = Game.State.GAME_OVER; ///patom
+            game.currentState = Game.State.GAME_OVER;
             game.currentState.isChanged = true;
             return;
         }

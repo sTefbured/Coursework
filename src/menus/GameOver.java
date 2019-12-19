@@ -31,10 +31,13 @@ public class GameOver extends Menu {
         switch (currentChoice) {
             case 0: {
                 LevelLoader.setCurrentLevel(LevelLoader.getCurrentLevel() - 1);
+                game.currentState = Game.State.RUNNING;
                 Game.isRunning = true;
+                break;
             }
             case 1: {
                 game.currentState = Game.State.MAIN_MENU;
+                break;
             }
         }
         game.currentState.isChanged = true;

@@ -135,6 +135,7 @@ public class Game extends Canvas {
                 pause();
                 continue;
             } else if ((currentState == State.RUNNING) && currentState.isChanged) {
+                handler.getPlayer().setAlive();
                 removeKeyListener(pause);
                 addKeyListener(keyInput);
                 currentState.isChanged = false;
@@ -159,6 +160,7 @@ public class Game extends Canvas {
 
             if (!isRunning) {
                 if (handler.getPlayer().isDead) {
+                    handler.getPlayer().isDead = false;
                     currentState = State.GAME_OVER;
                     currentState.isChanged = true;
                 } else if (LevelLoader.getCurrentLevel() < LevelLoader.numberOfLevels) {
@@ -167,6 +169,7 @@ public class Game extends Canvas {
                 } else {
                     removeKeyListener(keyInput);
                     handler.clearLevel();
+                    currentState = State.MAIN_MENU;
                     currentState.isChanged = true;
                 }
             }
