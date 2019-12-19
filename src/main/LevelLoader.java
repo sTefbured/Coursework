@@ -62,7 +62,11 @@ public class LevelLoader implements ObjectColor {
 //        }
         switch (rgb) {
             case PLAYER: {
-                handler.addPlayer(new Player(i * Block.WIDTH, j * Block.HEIGHT, handler));
+                if (handler.getPlayer() == null) {
+                    handler.addPlayer(new Player(i * Block.WIDTH, j * Block.HEIGHT, handler));
+                } else {
+                    handler.getPlayer().setCoordinates(i * Block.WIDTH, j * Block.HEIGHT);
+                }
                 camera.setX((int) handler.getPlayer().getX());
                 handler.getPlayer().setCamera(camera);
                 break;

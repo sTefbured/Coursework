@@ -6,6 +6,7 @@ import main.LevelLoader;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class LevelsList extends Menu {
     private Game game;
@@ -55,6 +56,7 @@ public class LevelsList extends Menu {
             return;
         }
         LevelLoader.setCurrentLevel(currentChoice);
+        game.currentState = Game.State.RUNNING;
         game.currentState.isChanged = true;
         Game.isRunning = true;
     }

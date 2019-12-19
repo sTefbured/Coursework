@@ -67,12 +67,9 @@ public class Handler {
     }
 
     public void update() {
-        if (player == null) {
-            return;
-        }
         if (player.mustBeRemoved()) {
             Game.isRunning = false;
-            game.currentState = Game.State.MAIN_MENU; ///patom
+            game.currentState = Game.State.GAME_OVER; ///patom
             game.currentState.isChanged = true;
             return;
         }
@@ -129,7 +126,8 @@ public class Handler {
             spike.render(graphics2D);
         }
 
-        for (Bullet bullet : bullets) {
+        for (int i = 0; i < bullets.size(); i++) {
+            Bullet bullet = bullets.get(i);
             bullet.render(graphics2D);
         }
 
@@ -144,6 +142,5 @@ public class Handler {
         spikes.clear();
         bullets.clear();
         levelEnds.clear();
-//        player = null;
     }
 }

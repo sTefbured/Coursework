@@ -6,8 +6,8 @@ import main.Handler;
 import java.awt.*;
 
 public class Bonus extends Sprite {
-    public static final int WIDTH = 30;
-    public static final int HEIGHT = 30;
+    public static final int WIDTH = 32;
+    public static final int HEIGHT = 32;
     private long startTime;
 
     public Bonus(float x, float y, Handler handler) {
@@ -28,15 +28,7 @@ public class Bonus extends Sprite {
 
     @Override
     public void render(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.CYAN);
-        graphics2D.fillRect((int) x, (int) y, WIDTH, HEIGHT);
-
-        graphics2D.setColor(Color.ORANGE);
-        graphics2D.fill(getBottomBounds());
-        graphics2D.fill(getTopBounds());
-        graphics2D.setColor(Color.BLUE);
-        graphics2D.fill(getLeftBounds());
-        graphics2D.fill(getRightBounds());
+        graphics2D.drawImage(textures.getBonus(), (int) x, (int) y, WIDTH, HEIGHT, null);
     }
 
     @Override

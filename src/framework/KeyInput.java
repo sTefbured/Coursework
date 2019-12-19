@@ -1,15 +1,18 @@
 package framework;
 
 import gameObjects.Player;
+import main.Game;
 import main.Handler;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter {
+    private Game game;
     private Handler handler;
 
-    public KeyInput(Handler handler) {
+    public KeyInput(Game game, Handler handler) {
+        this.game = game;
         this.handler = handler;
     }
 
@@ -38,10 +41,13 @@ public class KeyInput extends KeyAdapter {
                 }
                 break;
             case KeyEvent.VK_ESCAPE:
-                System.exit(0);
+                game.currentState = Game.State.PAUSE;
+                game.currentState.isChanged = true;
                 break;
             case KeyEvent.VK_CONTROL:
-                player.shoot();
+                if (!player.isShooting) {
+                    player.shoot();
+                }
                 break;
         }
     }

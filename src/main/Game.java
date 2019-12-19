@@ -4,13 +4,11 @@ import framework.KeyInput;
 import framework.Textures;
 import gameObjects.Block;
 import gameObjects.Player;
-import menus.Credits;
-import menus.GameOver;
-import menus.LevelsList;
-import menus.MainMenu;
+import menus.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.io.File;
 
@@ -49,6 +47,7 @@ public class Game extends Canvas {
     private LevelsList levelsList;
     private Credits credits;
     private GameOver gameOver;
+    private Pause pause;
 
     private Game() {
         try {
@@ -68,6 +67,7 @@ public class Game extends Canvas {
         levelsList = new LevelsList(this);
         credits = new Credits(this);
         gameOver = new GameOver(this);
+        pause = new Pause(this);
 
 
         new Window(WINDOW_WIDTH, WINDOW_HEIGHT, title, iconImage, this);
@@ -102,13 +102,8 @@ public class Game extends Canvas {
                 loadCredits(graphics2D);
                 break;
             }
-            case RUNNING: {
-                break;
-            }
-            case PAUSE: {
-                break;
-            }
             case GAME_OVER: {
+                gameOver(graphics2D);
                 break;
             }
         }
@@ -116,8 +111,7 @@ public class Game extends Canvas {
     }
 
     private void initGameObjects() {
-        keyInput = new KeyInput(handler);
-        addKeyListener(keyInput);
+        keyInput = new KeyInput(this, handler);
         levelLoader.loadLevel();
         camera = levelLoader.getCamera();
     }
@@ -135,6 +129,18 @@ public class Game extends Canvas {
         int frames = 0;
 
         while (isRunning) {
+            if (currentState == State.PAUSE) {
+                if (currentState.isChanged) {
+                    removeKeyListener(keyInput);
+                }
+                pause();
+                continue;
+            } else if ((currentState == State.RUNNING) && currentState.isChanged) {
+                removeKeyListener(pause);
+                addKeyListener(keyInput);
+                currentState.isChanged = false;
+                lastTime = System.nanoTime();
+            }
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / secPerUpdate;
             lastTime = currentTime;
@@ -154,9 +160,9 @@ public class Game extends Canvas {
 
             if (!isRunning) {
                 if (handler.getPlayer().isDead) {
-                    gameOver();
+                    currentState = State.GAME_OVER;
+                    currentState.isChanged = true;
                 } else if (LevelLoader.getCurrentLevel() < LevelLoader.numberOfLevels) {
-                    handler.clearLevel();
                     levelLoader.loadLevel();
                     isRunning = true;
                 } else {
@@ -166,6 +172,7 @@ public class Game extends Canvas {
                 }
             }
         }
+        handler.clearLevel();
     }
 
     private void updateLevel() {
@@ -190,16 +197,23 @@ public class Game extends Canvas {
         return textures;
     }
 
-    private void gameOver() {
-//        if (currentState.isChanged) {
-//            addKeyListener(gameOver);
-//        }
-//        gameOver.render((Graphics2D) bufferStrategy.getDrawGraphics());
+    private void gameOver(Graphics2D graphics2D) {
+        if (currentState.isChanged) {
+            removeKeyListener(keyInput);
+            handler.clearLevel();
+            addKeyListener(gameOver);
+            currentState.isChanged = false;
+        }
+        gameOver.render(graphics2D);
+    }
 
-        currentState = State.MAIN_MENU;
-        currentState.isChanged = true;
-        removeKeyListener(keyInput);
-        handler.clearLevel();
+    public void pause() {
+        if (currentState.isChanged) {
+            addKeyListener(pause);
+            currentState.isChanged = false;
+        }
+        pause.render((Graphics2D) bufferStrategy.getDrawGraphics());
+        bufferStrategy.show();
     }
 
     private void loadMainMenu(Graphics2D graphics2D) {

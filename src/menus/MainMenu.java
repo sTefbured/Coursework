@@ -62,6 +62,7 @@ public class MainMenu extends Menu {
     protected void pressButton() {
         switch (currentChoice) {
             case 0: {
+                game.currentState = Game.State.RUNNING;
                 LevelLoader.setCurrentLevel(0);
                 Game.isRunning = true;
                 break;

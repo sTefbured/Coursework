@@ -67,8 +67,6 @@ public class Bullet extends Sprite {
 
     @Override
     public void render(Graphics2D graphics2D) {
-        graphics2D.setColor(new Color(0, 200, 150));
-        graphics2D.drawRect((int) x, (int) y, WIDTH, HEIGHT);
         drawAnimation(graphics2D);
     }
 

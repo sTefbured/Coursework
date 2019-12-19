@@ -21,6 +21,7 @@ public class Textures {
 
     private BufferedImage[] blocks;
     private BufferedImage spikes;
+    private BufferedImage bonus;
 
     public Textures() {
         playerAttackLeft = getSpriteArray("/player/player_attack_left.png");
@@ -41,6 +42,7 @@ public class Textures {
 
         try {
             spikes = ImageIO.read(getClass().getResource("/spikes.png"));
+            bonus = ImageIO.read(getClass().getResource("/bonus.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -112,5 +114,9 @@ public class Textures {
 
     public BufferedImage getSpikes() {
         return spikes;
+    }
+
+    public BufferedImage getBonus() {
+        return bonus;
     }
 }
