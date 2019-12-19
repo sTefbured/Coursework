@@ -53,13 +53,6 @@ public class LevelLoader implements ObjectColor {
     }
 
     private void switchObjects(int rgb, int i, int j) {
-//        int red = (rgb >> 16) & 0xff;
-//        int green = (rgb >> 8) & 0xff;
-//        int blue = rgb & 0xff;
-//        if ((red == 74) && (green == 45) && (blue == 122)) {
-//            System.out.println("SKA");
-//            System.out.println(Integer.toHexString(rgb));
-//        }
         switch (rgb) {
             case PLAYER: {
                 if (handler.getPlayer() == null) {

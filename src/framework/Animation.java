@@ -12,12 +12,12 @@ public class Animation {
         count = 0;
     }
 
-    public BufferedImage getSpriteImage(int speed, boolean isLooped, BufferedImage[] spriteImages) {
+    public BufferedImage getSpriteImage(int delay, boolean isLooped, BufferedImage[] spriteImages) {
         if (!isLooped && (index >= spriteImages.length)) {
             return spriteImage;
         }
 
-        if (count > speed) {
+        if (count > delay) {
             count = 0;
             index = 0;
         } else if ((count == 0) && (index == 0)) {
@@ -28,7 +28,7 @@ public class Animation {
             index = 0;
         }
 
-        if (count == speed) {
+        if (count == delay) {
             spriteImage = spriteImages[index];
             index++;
             count = 0;

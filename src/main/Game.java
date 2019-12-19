@@ -2,13 +2,11 @@ package main;
 
 import framework.KeyInput;
 import framework.Textures;
-import gameObjects.Block;
 import gameObjects.Player;
 import menus.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.io.File;
 
@@ -33,7 +31,7 @@ public class Game extends Canvas {
         public boolean isChanged;
     }
 
-    public static Font font;
+    public static Font font, font1;
     public static boolean isRunning;
     private Handler handler;
     private Camera camera;
@@ -52,6 +50,7 @@ public class Game extends Canvas {
     private Game() {
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE.ttf"));
+            font1 = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE_INV.ttf"));
         } catch (Exception e) {
             e.printStackTrace();
         }

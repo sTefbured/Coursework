@@ -1,5 +1,6 @@
 package framework;
 
+import main.Game;
 import main.LevelLoader;
 
 import java.awt.*;
@@ -26,13 +27,20 @@ public abstract class Menu extends KeyAdapter {
     protected void renderButtons(int buttonsCount, Graphics2D graphics2D) {
         for (int i = 0; i < buttonsCount; i++) {
             if (i == currentChoice) {
-                graphics2D.setFont(font.deriveFont(Font.PLAIN, 40));
+                graphics2D.setFont(Game.font1.deriveFont(Font.PLAIN, 40));
                 graphics2D.setColor(activeButtonColor);
+                graphics2D.drawString(buttons[i], x, y + i * 50);
+                graphics2D.setFont(Game.font.deriveFont(Font.PLAIN, 40));
+                graphics2D.setColor(Color.BLACK);
+                graphics2D.drawString(buttons[i], x, y + i * 50);
             } else {
-                graphics2D.setFont(font.deriveFont(Font.PLAIN, 30));
+                graphics2D.setFont(Game.font.deriveFont(Font.PLAIN, 30));
+                graphics2D.setColor(Color.BLACK);
+                graphics2D.drawString(buttons[i], x, y + i * 50);
+                graphics2D.setFont(Game.font1.deriveFont(Font.PLAIN, 30));
                 graphics2D.setColor(buttonColor);
+                graphics2D.drawString(buttons[i], x, y + i * 50);
             }
-            graphics2D.drawString(buttons[i], x, y + i * 50);
         }
     }
 

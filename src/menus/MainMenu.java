@@ -18,7 +18,7 @@ public class MainMenu extends Menu {
     public MainMenu(int x, int y, Font font, Color buttonColor, Color activeButtonColor, Game game, Textures textures) {
         super(x, y, font, buttonColor, activeButtonColor, new String[]{
                 "START",
-                "LEVELS",
+                "STAGES",
                 "CREDITS",
                 "EXIT"
         });
@@ -46,15 +46,8 @@ public class MainMenu extends Menu {
         graphics2D.setColor(Color.GREEN);
         graphics2D.setFont(font.deriveFont(Font.PLAIN, 100));
         graphics2D.drawString(Game.title, 80, 200);
-        Font font1;
-        try {
-            font1 = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE_INV.ttf"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            font1 = font;
-        }
         graphics2D.setColor(Color.RED);
-        graphics2D.setFont(font1.deriveFont(Font.PLAIN, 100));
+        graphics2D.setFont(Game.font1.deriveFont(Font.PLAIN, 100));
         graphics2D.drawString(Game.title, 80, 200);
     }
 

@@ -9,9 +9,9 @@ public class Enemy extends Sprite {
     private static final int WIDTH = 60, HEIGHT = 3 * Block.HEIGHT;
     private final int VISIBILITY_RANGE = 1500;
     private static final int MAX_HEALTH = 50;
+    private static final int IMG_DELTA = 10;
 
     private Player player;
-    private long deathTime;
 
     public Enemy(float x, float y, Handler handler) {
         super(x, y, MAX_HEALTH, true, handler);
@@ -112,15 +112,36 @@ public class Enemy extends Sprite {
 
     @Override
     public void render(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.green);
-        graphics2D.draw(getVisibilityBounds());
-        graphics2D.setColor(Color.RED);
-        graphics2D.fillRect((int) x, (int) y, WIDTH, HEIGHT);
+        drawAnimation(graphics2D);
     }
 
     @Override
     protected void drawAnimation(Graphics2D graphics2D) {
+        if (isFacingLeft) {
+            if (isShooting) {
+                graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getEnemyAttackLeft()),
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
+            } else if (speedX != 0) {
+                graphics2D.drawImage(animation.getSpriteImage(15, true, textures.getEnemyWalkLeft()),
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
+            } else if (isDead) {
+                graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getEnemyDieLeft()),
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
+            }
+        } else {
+            if (isShooting) {
+                graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getEnemyAttackRight()),
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
+            } else if (speedX != 0) {
+                graphics2D.drawImage(animation.getSpriteImage(15, true, textures.getEnemyWalkRight()),
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
+            } else if (isDead) {
+                graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getEnemyDieRight()),
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
+            }
+        }
     }
+
 
     public Rectangle getVisibilityBounds() {
         return new Rectangle((int) (x + WIDTH / 2) - VISIBILITY_RANGE / 2, (int) y, VISIBILITY_RANGE, HEIGHT);

@@ -8,7 +8,7 @@ import java.awt.*;
 public class Pause extends Menu {
     private Game game;
     public Pause(Game game) {
-        super(Game.WINDOW_WIDTH / 2 - 50, Game.WINDOW_HEIGHT / 2 - 40, Game.font.deriveFont(Font.PLAIN, 24),
+        super(Game.WINDOW_WIDTH / 2 - 180, Game.WINDOW_HEIGHT / 2 - 40, Game.font.deriveFont(Font.PLAIN, 24),
                 Color.RED, Color.GREEN, new String[] {
                         "RESUME",
                         "BACK TO MENU",
@@ -20,7 +20,13 @@ public class Pause extends Menu {
     @Override
     public void render(Graphics2D graphics2D) {
         graphics2D.setColor(Color.GRAY);
-        graphics2D.fillRect(Game.WINDOW_WIDTH / 2 - 200, Game.WINDOW_HEIGHT / 2 - 100, 400, 200);
+        graphics2D.fillRect(Game.WINDOW_WIDTH / 2 - 200, Game.WINDOW_HEIGHT / 2 - 200, 400, 300);
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.setFont(Game.font.deriveFont(Font.BOLD, 35));
+        graphics2D.drawString("PAUSE", Game.WINDOW_WIDTH / 2 - 70, Game.WINDOW_HEIGHT / 2 - 130);
+        graphics2D.setColor(Color.RED);
+        graphics2D.setFont(Game.font1.deriveFont(Font.BOLD, 35));
+        graphics2D.drawString("PAUSE", Game.WINDOW_WIDTH / 2 - 70, Game.WINDOW_HEIGHT / 2 - 130);
         renderButtons(3, graphics2D);
     }
 

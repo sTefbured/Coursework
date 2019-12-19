@@ -16,6 +16,13 @@ public class Textures {
     private BufferedImage[] playerRunLeft;
     private BufferedImage[] playerRunRight;
 
+    private BufferedImage[] enemyAttackLeft;
+    private BufferedImage[] enemyAttackRight;
+    private BufferedImage[] enemyDieLeft;
+    private BufferedImage[] enemyDieRight;
+    private BufferedImage[] enemyWalkLeft;
+    private BufferedImage[] enemyWalkRight;
+
     private BufferedImage[] bulletLeft;
     private BufferedImage[] bulletRight;
 
@@ -34,6 +41,13 @@ public class Textures {
         playerDieRight = getSpriteArray("/player/player_die_right.png");
         playerRunLeft = getSpriteArray("/player/player_run_left.png");
         playerRunRight = getSpriteArray("/player/player_run_right.png");
+
+        enemyAttackLeft = getSpriteArray("/enemy/enemy_attack_left.png");
+        enemyAttackRight = getSpriteArray("/enemy/enemy_attack_right.png");
+        enemyDieLeft = getSpriteArray("/enemy/enemy_die_left.png");
+        enemyDieRight = getSpriteArray("/enemy/enemy_die_right.png");
+        enemyWalkLeft = getSpriteArray("/enemy/enemy_walk_left.png");
+        enemyWalkRight = getSpriteArray("/enemy/enemy_walk_right.png");
 
         bulletLeft = getSpriteArray("/bullet/bullet_left.png");
         bulletRight = getSpriteArray("/bullet/bullet_right.png");
@@ -98,6 +112,30 @@ public class Textures {
 
     public BufferedImage[] getPlayerRunRight() {
         return playerRunRight;
+    }
+
+    public BufferedImage[] getEnemyAttackLeft() {
+        return enemyAttackLeft;
+    }
+
+    public BufferedImage[] getEnemyAttackRight() {
+        return enemyAttackRight;
+    }
+
+    public BufferedImage[] getEnemyDieLeft() {
+        return enemyDieLeft;
+    }
+
+    public BufferedImage[] getEnemyDieRight() {
+        return enemyDieRight;
+    }
+
+    public BufferedImage[] getEnemyWalkLeft() {
+        return enemyWalkLeft;
+    }
+
+    public BufferedImage[] getEnemyWalkRight() {
+        return enemyWalkRight;
     }
 
     public BufferedImage[] getBulletLeft() {

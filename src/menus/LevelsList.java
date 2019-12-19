@@ -6,7 +6,7 @@ import main.LevelLoader;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 
 public class LevelsList extends Menu {
     private Game game;
@@ -15,7 +15,7 @@ public class LevelsList extends Menu {
         super(Game.WINDOW_WIDTH / 2, Game.WINDOW_HEIGHT / 2,
                 Game.font, Color.PINK, Color.YELLOW, new String[LevelLoader.numberOfLevels + 1]);
         for (int i = 0; i < buttons.length - 1; i++) {
-            buttons[i] = "LEVEL " + (i + 1);
+            buttons[i] = "STAGE " + (i + 1);
         }
         buttons[buttons.length - 1] = "BACK";
         this.game = game;
