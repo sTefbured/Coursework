@@ -16,7 +16,7 @@ public class Enemy extends Sprite {
     public Enemy(float x, float y, Handler handler) {
         super(x, y, MAX_HEALTH, true, handler);
         player = handler.getPlayer();
-        speedX = 3;
+        speedX = 2;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Enemy extends Sprite {
     }
 
     private boolean seePlayer() {
-        return (getVisibilityBounds().intersects(player.getBounds()) && (isLookingOnPlayer()));
+        return (getVisibilityBounds().intersects(player.getBounds()) && isLookingOnPlayer() && noWallsBetweenPlayer());
     }
 
     private boolean isLookingOnPlayer() {
@@ -63,6 +63,30 @@ public class Enemy extends Sprite {
             return true;
         } else {
             return !isFacingLeft && ((x - player.getX()) < 0);
+        }
+    }
+
+    private boolean noWallsBetweenPlayer() {
+        for (Block block : handler.getBlocks()) {
+            if (!block.getBounds().intersects(getVisibilityBounds())) {
+                continue;
+            }
+            if (isBetweenPlayerAndEnemy(block)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isBetweenPlayerAndEnemy(Block block) {
+        boolean isRighter = (block.getX() > x + WIDTH) && (block.getX() > player.getX() + Player.WIDTH);
+        boolean isLefter = (block.getX() < x) && (block.getX() < player.getX());
+        if (isLefter || isRighter) {
+            System.out.println("LEFTER: " + isLefter + " RIGHTER: " + isRighter);
+            return false;
+        } else {
+            System.out.println("ALO");
+            return true;
         }
     }
 
@@ -142,9 +166,8 @@ public class Enemy extends Sprite {
         }
     }
 
-
     public Rectangle getVisibilityBounds() {
-        return new Rectangle((int) (x + WIDTH / 2) - VISIBILITY_RANGE / 2, (int) y, VISIBILITY_RANGE, HEIGHT);
+        return new Rectangle((int) (x + WIDTH / 2) - VISIBILITY_RANGE / 2, (int) y + 5, VISIBILITY_RANGE, HEIGHT - 10);
     }
 
     @Override

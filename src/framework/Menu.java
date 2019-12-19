@@ -1,7 +1,6 @@
 package framework;
 
 import main.Game;
-import main.LevelLoader;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
