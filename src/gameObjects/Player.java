@@ -176,14 +176,14 @@ public class Player extends Sprite {
             if (isShooting) {
                 graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getPlayerAttackLeft()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
+            } else if (isDead) {
+                graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getPlayerDieLeft()),
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (isJumping) {
                 graphics2D.drawImage(animation.getSpriteImage(0, true, textures.getPlayerJumpLeft()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (speedX != 0) {
                 graphics2D.drawImage(animation.getSpriteImage(15, true, textures.getPlayerRunLeft()),
-                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
-            } else if (isDead) {
-                graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getPlayerDieLeft()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else {
                 graphics2D.drawImage(animation.getSpriteImage(30, true, textures.getPlayerIdleLeft()),
@@ -193,14 +193,15 @@ public class Player extends Sprite {
             if (isShooting) {
                 graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getPlayerAttackRight()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
-            } else if (isJumping) {
+            }else if (isDead) {
+                graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getPlayerDieRight()),
+                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
+            }
+            else if (isJumping) {
                 graphics2D.drawImage(animation.getSpriteImage(0, true, textures.getPlayerJumpRight()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (speedX != 0) {
                 graphics2D.drawImage(animation.getSpriteImage(15, true, textures.getPlayerRunRight()),
-                        (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
-            } else if (isDead) {
-                graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getPlayerDieRight()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else {
                 graphics2D.drawImage(animation.getSpriteImage(30, true, textures.getPlayerIdleRight()),
