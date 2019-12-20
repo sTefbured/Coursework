@@ -9,7 +9,6 @@ public class LevelLoader implements ObjectColor {
     private Handler handler;
 
     private Camera camera;
-    private Game game;
     private BufferedImage[] levelImages;
     public static int numberOfLevels;
     private static int currentLevel;
@@ -18,14 +17,10 @@ public class LevelLoader implements ObjectColor {
         this.handler = handler;
         this.camera = camera;
         this.camera = new Camera(0);
-        this.game = game;
         try {
             levelImages = new BufferedImage[]{
                     ImageIO.read(getClass().getResource("/levels/lvl_1.png")),
                     ImageIO.read(getClass().getResource("/levels/lvl_2.png"))
-//                    ImageIO.read(getClass().getResource("/levels/lvl_3.png")),
-//                    ImageIO.read(getClass().getResource("/levels/lvl_4.png")),
-//                    ImageIO.read(getClass().getResource("/levels/lvl_5.png"))
             };
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,6 +32,7 @@ public class LevelLoader implements ObjectColor {
 
     public void loadLevel() {
         parseLvlImg(levelImages[currentLevel]);
+        handler.getPlayer().setSpeedX(0);
         currentLevel++;
     }
 
