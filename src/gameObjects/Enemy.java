@@ -8,7 +8,7 @@ import java.awt.*;
 public class Enemy extends Sprite {
     private static final int WIDTH = 60, HEIGHT = 3 * Block.HEIGHT;
     private final int VISIBILITY_RANGE = 1500;
-    private static final int MAX_HEALTH = 50;
+    public static final int MAX_HEALTH = 50;
     private static final int IMG_DELTA = 10;
 
     private Player player;
@@ -81,13 +81,7 @@ public class Enemy extends Sprite {
     private boolean isBetweenPlayerAndEnemy(Block block) {
         boolean isRighter = (block.getX() > x + WIDTH) && (block.getX() > player.getX() + Player.WIDTH);
         boolean isLefter = (block.getX() < x) && (block.getX() < player.getX());
-        if (isLefter || isRighter) {
-            System.out.println("LEFTER: " + isLefter + " RIGHTER: " + isRighter);
-            return false;
-        } else {
-            System.out.println("ALO");
-            return true;
-        }
+        return !isLefter && !isRighter;
     }
 
     private void attack() {

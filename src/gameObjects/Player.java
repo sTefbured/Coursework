@@ -87,7 +87,7 @@ public class Player extends Sprite {
                 continue;
             }
             if (getBottomBounds().intersects(enemy.getTopBounds())) {
-                enemies.remove(enemy);
+                enemy.getDamage(Enemy.MAX_HEALTH);
                 i--;
                 size--;
             } else if (getLeftBounds().intersects(enemy.getBounds())) {
