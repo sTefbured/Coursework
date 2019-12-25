@@ -19,6 +19,7 @@ public class MainMenu extends Menu {
         super(x, y, font, buttonColor, activeButtonColor, new String[]{
                 "START",
                 "STAGES",
+                "HELP",
                 "CREDITS",
                 "EXIT"
         });
@@ -65,10 +66,14 @@ public class MainMenu extends Menu {
                 break;
             }
             case 2: {
-                game.currentState = Game.State.CREDITS;
+                game.currentState = Game.State.HELP;
                 break;
             }
             case 3: {
+                game.currentState = Game.State.CREDITS;
+                break;
+            }
+            case 4: {
                 System.exit(0);
                 break;
             }

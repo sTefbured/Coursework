@@ -23,6 +23,7 @@ public class Game extends Canvas {
     public enum State {
         MAIN_MENU,
         LEVELS_LIST,
+        HELP,
         CREDITS,
         RUNNING,
         PAUSE,
@@ -43,6 +44,7 @@ public class Game extends Canvas {
 
     private MainMenu mainMenu;
     private LevelsList levelsList;
+    private HelpMenu helpMenu;
     private Credits credits;
     private GameOver gameOver;
     private Pause pause;
@@ -64,6 +66,7 @@ public class Game extends Canvas {
         mainMenu = new MainMenu(200, Game.WINDOW_HEIGHT / 2, font,
                 Color.RED, Color.GREEN, this, textures);
         levelsList = new LevelsList(this);
+        helpMenu = new HelpMenu(this);
         credits = new Credits(this);
         gameOver = new GameOver(this);
         pause = new Pause(this);
@@ -95,6 +98,10 @@ public class Game extends Canvas {
             }
             case LEVELS_LIST: {
                 loadLevelsList(graphics2D);
+                break;
+            }
+            case HELP: {
+                loadHelp(graphics2D);
                 break;
             }
             case CREDITS: {
@@ -232,6 +239,14 @@ public class Game extends Canvas {
             currentState.isChanged = false;
         }
         levelsList.render(graphics2D);
+    }
+
+    private void loadHelp(Graphics2D graphics2D) {
+        if (currentState.isChanged) {
+            addKeyListener(helpMenu);
+            currentState.isChanged = false;
+        }
+        helpMenu.render(graphics2D);
     }
 
     private void loadCredits(Graphics2D graphics2D) {
