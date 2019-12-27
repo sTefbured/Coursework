@@ -8,7 +8,6 @@ import main.Game;
 import main.LevelLoader;
 
 import java.awt.*;
-import java.io.File;
 
 public class MainMenu extends Menu {
     private Game game;

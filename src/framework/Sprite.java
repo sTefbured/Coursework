@@ -127,6 +127,7 @@ public abstract class Sprite extends MovingObject {
             healthPoints = 0;
             deathTime = System.currentTimeMillis();
             speedX = 0;
+            speedY = 0;
         }
 
         if (!isDead) {

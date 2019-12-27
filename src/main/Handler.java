@@ -96,6 +96,9 @@ public class Handler {
 
         for (int i = 0, size = bullets.size(); i < size; i++) {
             Bullet bullet = bullets.get(i);
+            if (bullet == null) {
+                continue;
+            }
             bullet.update();
             if (bullet.mustBeRemoved()) {
                 bullets.remove(bullet);
