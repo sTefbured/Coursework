@@ -151,6 +151,14 @@ public abstract class Sprite extends MovingObject {
         collision();
     }
 
+    public boolean getIsJumping() {
+        return isJumping;
+    }
+
+    public float getSpeedY() {
+        return speedY;
+    }
+
     public void getDamage(int damagePoints) {
         healthPoints -= damagePoints;
     }

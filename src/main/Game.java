@@ -1,6 +1,5 @@
 package main;
 
-import framework.KeyInput;
 import framework.Textures;
 import gameObjects.Player;
 import menus.*;

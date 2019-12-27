@@ -1,4 +1,4 @@
-package framework;
+package main;
 
 import gameObjects.Player;
 import main.Game;
@@ -34,7 +34,7 @@ public class KeyInput extends KeyAdapter {
             case KeyEvent.VK_SPACE:
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                if ((!player.isJumping) && (player.speedY == 0)) {
+                if ((!player.getIsJumping()) && (player.getSpeedY() == 0)) {
                     player.setSpeedY(-14);
                     player.setFalling(false);
                     player.setJumping(true);
