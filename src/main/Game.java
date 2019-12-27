@@ -1,5 +1,6 @@
 package main;
 
+import framework.Menu;
 import framework.Textures;
 import gameObjects.Player;
 import menus.*;
@@ -70,7 +71,6 @@ public class Game extends Canvas {
         gameOver = new GameOver(this);
         pause = new Pause(this);
 
-
         new Window(WINDOW_WIDTH, WINDOW_HEIGHT, title, iconImage, this);
     }
 
@@ -92,23 +92,23 @@ public class Game extends Canvas {
         Graphics2D graphics2D = (Graphics2D) bufferStrategy.getDrawGraphics();
         switch (currentState) {
             case MAIN_MENU: {
-                loadMainMenu(graphics2D);
+                loadMenu(mainMenu, graphics2D);
                 break;
             }
             case LEVELS_LIST: {
-                loadLevelsList(graphics2D);
+                loadMenu(levelsList, graphics2D);
                 break;
             }
             case HELP: {
-                loadHelp(graphics2D);
+                loadMenu(helpMenu, graphics2D);
                 break;
             }
             case CREDITS: {
-                loadCredits(graphics2D);
+                loadMenu(credits, graphics2D);
                 break;
             }
             case GAME_OVER: {
-                gameOver(graphics2D);
+                loadMenu(gameOver, graphics2D);
                 break;
             }
         }
@@ -138,7 +138,8 @@ public class Game extends Canvas {
                 if (currentState.isChanged) {
                     removeKeyListener(keyInput);
                 }
-                pause();
+                loadMenu(pause, (Graphics2D) bufferStrategy.getDrawGraphics());
+                bufferStrategy.show();
                 continue;
             } else if ((currentState == State.RUNNING) && currentState.isChanged) {
                 removeKeyListener(pause);
@@ -168,10 +169,12 @@ public class Game extends Canvas {
                     handler.getPlayer().isDead = false;
                     currentState = State.GAME_OVER;
                     currentState.isChanged = true;
+                    removeKeyListener(keyInput);
+                    handler.clearLevel();
                 } else if (LevelLoader.getCurrentLevel() < LevelLoader.numberOfLevels) {
                     levelLoader.loadLevel();
                     isRunning = true;
-                } else {
+                } else {    //TODO: Add "congratulations" menu, maybe scores
                     removeKeyListener(keyInput);
                     handler.clearLevel();
                     currentState = State.MAIN_MENU;
@@ -204,55 +207,12 @@ public class Game extends Canvas {
         return textures;
     }
 
-    private void gameOver(Graphics2D graphics2D) {
+    private void loadMenu(Menu menu, Graphics2D graphics2D) {
         if (currentState.isChanged) {
-            removeKeyListener(keyInput);
-            handler.clearLevel();
-            addKeyListener(gameOver);
+            addKeyListener(menu);
             currentState.isChanged = false;
         }
-        gameOver.render(graphics2D);
-    }
-
-    public void pause() {
-        if (currentState.isChanged) {
-            addKeyListener(pause);
-            currentState.isChanged = false;
-        }
-        pause.render((Graphics2D) bufferStrategy.getDrawGraphics());
-        bufferStrategy.show();
-    }
-
-    private void loadMainMenu(Graphics2D graphics2D) {
-        if (currentState.isChanged) {
-            addKeyListener(mainMenu);
-            currentState.isChanged = false;
-        }
-        mainMenu.render(graphics2D);
-    }
-
-    private void loadLevelsList(Graphics2D graphics2D) {
-        if (currentState.isChanged) {
-            addKeyListener(levelsList);
-            currentState.isChanged = false;
-        }
-        levelsList.render(graphics2D);
-    }
-
-    private void loadHelp(Graphics2D graphics2D) {
-        if (currentState.isChanged) {
-            addKeyListener(helpMenu);
-            currentState.isChanged = false;
-        }
-        helpMenu.render(graphics2D);
-    }
-
-    private void loadCredits(Graphics2D graphics2D) {
-        if (currentState.isChanged) {
-            addKeyListener(credits);
-            currentState.isChanged = false;
-        }
-        credits.render(graphics2D);
+        menu.render(graphics2D);
     }
 
     public void setPlayerAlive() {

@@ -2,6 +2,7 @@ package framework;
 
 import java.awt.image.BufferedImage;
 
+//FIXME: Fix animations, make them more smooth
 public class Animation {
     private int index;
     private int count;
