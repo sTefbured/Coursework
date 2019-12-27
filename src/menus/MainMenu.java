@@ -58,6 +58,7 @@ public class MainMenu extends Menu {
                 game.currentState = Game.State.RUNNING;
                 LevelLoader.setCurrentLevel(0);
                 Game.isRunning = true;
+                game.setPlayerAlive();
                 break;
             }
             case 1: {

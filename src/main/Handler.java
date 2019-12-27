@@ -129,8 +129,7 @@ public class Handler {
             spike.render(graphics2D);
         }
 
-        for (int i = 0; i < bullets.size(); i++) {
-            Bullet bullet = bullets.get(i);
+        for (Bullet bullet : bullets) {
             bullet.render(graphics2D);
         }
 

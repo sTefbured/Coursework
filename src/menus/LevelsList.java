@@ -59,5 +59,6 @@ public class LevelsList extends Menu {
         game.currentState = Game.State.RUNNING;
         game.currentState.isChanged = true;
         Game.isRunning = true;
+        game.setPlayerAlive();
     }
 }

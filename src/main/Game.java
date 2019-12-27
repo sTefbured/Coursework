@@ -142,7 +142,6 @@ public class Game extends Canvas {
                 pause();
                 continue;
             } else if ((currentState == State.RUNNING) && currentState.isChanged) {
-                handler.getPlayer().setAlive();
                 removeKeyListener(pause);
                 addKeyListener(keyInput);
                 currentState.isChanged = false;
@@ -255,6 +254,10 @@ public class Game extends Canvas {
             currentState.isChanged = false;
         }
         credits.render(graphics2D);
+    }
+
+    public void setPlayerAlive() {
+        handler.getPlayer().setAlive();
     }
 
     public static void main(String[] args) {

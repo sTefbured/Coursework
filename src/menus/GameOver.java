@@ -38,6 +38,7 @@ public class GameOver extends Menu {
                 LevelLoader.setCurrentLevel(LevelLoader.getCurrentLevel() - 1);
                 game.currentState = Game.State.RUNNING;
                 Game.isRunning = true;
+                game.setPlayerAlive();
                 break;
             }
             case 1: {
