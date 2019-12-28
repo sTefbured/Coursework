@@ -1,6 +1,7 @@
-package gameObjects;
+package gameobjects;
 
 import framework.Sprite;
+import lombok.extern.log4j.Log4j;
 import main.Camera;
 import main.Game;
 import main.Handler;
@@ -9,8 +10,10 @@ import java.awt.*;
 import java.io.File;
 import java.util.List;
 
+@Log4j
 public class Player extends Sprite {
-    public static final int WIDTH = 60, HEIGHT = 3 * Block.HEIGHT;
+    public static final int WIDTH = 60;
+    public static final int HEIGHT = 3 * Block.HEIGHT;
     public static final int IMG_DELTA = 10;
     private static final int MAX_HEALTH = 100;
 
@@ -20,23 +23,23 @@ public class Player extends Sprite {
     public Player(float x, float y, Handler handler) {
         super(x, y, MAX_HEALTH, true, handler);
         this.camera = null;
-        isGettingDamage = false;
+        setGettingDamage(false);
         isFacingLeft = false;
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE_INV.ttf"));
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn(e.toString());
         }
     }
 
     @Override
     public void update() {
-        if (isGettingDamage && (System.currentTimeMillis() - timerGettingDamage) >= 500) {
-            isGettingDamage = false;
+        if (isGettingDamage() && (System.currentTimeMillis() - getTimerGettingDamage()) >= 500) {
+            setGettingDamage(false);
             speedX = 0;
         }
-        if (isShooting && (System.currentTimeMillis() - timerShooting) >= 200) {
-            isShooting = false;
+        if (isShooting() && (System.currentTimeMillis() - getTimerShooting()) >= 200) {
+            setShooting(false);
         }
         super.update();
         camera.setX((int) x);
@@ -83,7 +86,7 @@ public class Player extends Sprite {
         List<Enemy> enemies = handler.getEnemies();
         for (int i = 0, size = enemies.size(); i < size; i++) {
             Enemy enemy = enemies.get(i);
-            if (enemy.isDead) {
+            if (enemy.isDead()) {
                 continue;
             }
             if (getBottomBounds().intersects(enemy.getTopBounds())) {
@@ -95,15 +98,15 @@ public class Player extends Sprite {
                 speedX = 5;
                 speedY = -10;
                 healthPoints -= 15;
-                isGettingDamage = true;
-                timerGettingDamage = System.currentTimeMillis();
+                setGettingDamage(true);
+                setTimerGettingDamage(System.currentTimeMillis());
             } else if (getRightBounds().intersects(enemy.getBounds())) {
                 x = enemy.getX() - getWidth();
                 speedX = -5;
                 speedY = -10;
                 healthPoints -= 15;
-                isGettingDamage = true;
-                timerGettingDamage = System.currentTimeMillis();
+                setGettingDamage(true);
+                setTimerGettingDamage(System.currentTimeMillis());
             }
         }
     }
@@ -113,7 +116,7 @@ public class Player extends Sprite {
             if (getBounds().intersects(levelEnd.getBounds())) {
                 x = levelEnd.getX() - WIDTH;
                 handler.clearLevel();
-                Game.isRunning = false;
+                Game.setRunning(false);
                 break;
             }
         }
@@ -122,7 +125,7 @@ public class Player extends Sprite {
     @Override
     public void getDamage(int damagePoints) {
         super.getDamage(damagePoints);
-        isGettingDamage = true;
+        setGettingDamage(true);
     }
 
     private void drawHealthBar(Graphics2D graphics2D) {
@@ -140,7 +143,7 @@ public class Player extends Sprite {
     }
 
     public void shoot() {
-        isShooting = true;
+        setShooting(true);
         if (isFacingLeft) {
             handler.getBullets().add(new Bullet(x - Bullet.WIDTH - 5, y + (float) WIDTH / 2 + 10,
                     -20 + speedX, handler));
@@ -148,7 +151,7 @@ public class Player extends Sprite {
             handler.getBullets().add(new Bullet(x + WIDTH + 5, y + (float) WIDTH / 2 + 10,
                     20 + speedX, handler));
         }
-        timerShooting = System.currentTimeMillis();
+        setTimerShooting(System.currentTimeMillis());
     }
 
     public void setCamera(Camera camera) {
@@ -173,10 +176,10 @@ public class Player extends Sprite {
     @Override
     protected void drawAnimation(Graphics2D graphics2D) {
         if (isFacingLeft) {
-            if (isShooting) {
+            if (isShooting()) {
                 graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getPlayerAttackLeft()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
-            } else if (isDead) {
+            } else if (isDead()) {
                 graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getPlayerDieLeft()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (isJumping) {
@@ -190,10 +193,10 @@ public class Player extends Sprite {
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             }
         } else {
-            if (isShooting) {
+            if (isShooting()) {
                 graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getPlayerAttackRight()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
-            }else if (isDead) {
+            }else if (isDead()) {
                 graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getPlayerDieRight()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             }
@@ -211,7 +214,7 @@ public class Player extends Sprite {
     }
 
     public void setAlive() {
-        isDead = false;
+        setDead(false);
         healthPoints = MAX_HEALTH;
     }
 }

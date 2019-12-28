@@ -1,0 +1,473 @@
+2019-12-28 01:51:17 DEBUG MainTest:9 - 3.0
+2019-12-28 01:58:06 DEBUG MainTest:9 - 3.0
+2019-12-28 02:00:52 INFO  Game:169 - FPS: 63 updates: 59
+2019-12-28 02:00:53 INFO  Game:169 - FPS: 68 updates: 60
+2019-12-28 02:00:54 INFO  Game:169 - FPS: 88 updates: 60
+2019-12-28 02:00:55 INFO  Game:169 - FPS: 96 updates: 60
+2019-12-28 02:00:56 INFO  Game:169 - FPS: 99 updates: 60
+2019-12-28 02:00:57 INFO  Game:169 - FPS: 96 updates: 60
+2019-12-28 02:00:58 INFO  Game:169 - FPS: 106 updates: 60
+2019-12-28 02:00:59 INFO  Game:169 - FPS: 104 updates: 60
+2019-12-28 02:01:00 INFO  Game:169 - FPS: 99 updates: 60
+2019-12-28 02:01:03 INFO  Game:169 - FPS: 87 updates: 58
+2019-12-28 02:01:03 INFO  Game:169 - FPS: 1 updates: 1
+2019-12-28 02:01:03 INFO  Game:169 - FPS: 13 updates: 10
+2019-12-28 02:01:04 INFO  Game:169 - FPS: 83 updates: 60
+2019-12-28 02:01:05 INFO  Game:169 - FPS: 97 updates: 61
+2019-12-28 02:01:06 INFO  Game:169 - FPS: 110 updates: 60
+2019-12-28 02:01:07 INFO  Game:169 - FPS: 101 updates: 60
+2019-12-28 02:01:08 INFO  Game:169 - FPS: 99 updates: 60
+2019-12-28 02:01:09 INFO  Game:169 - FPS: 103 updates: 60
+2019-12-28 02:01:10 INFO  Game:169 - FPS: 98 updates: 60
+2019-12-28 02:01:11 INFO  Game:169 - FPS: 91 updates: 60
+2019-12-28 02:01:12 INFO  Game:169 - FPS: 101 updates: 60
+2019-12-28 02:01:13 INFO  Game:169 - FPS: 91 updates: 60
+2019-12-28 02:01:14 INFO  Game:169 - FPS: 85 updates: 60
+2019-12-28 02:01:15 INFO  Game:169 - FPS: 94 updates: 60
+2019-12-28 02:01:16 INFO  Game:169 - FPS: 102 updates: 60
+2019-12-28 02:01:17 INFO  Game:169 - FPS: 107 updates: 60
+2019-12-28 02:01:18 INFO  Game:169 - FPS: 107 updates: 60
+2019-12-28 02:01:19 INFO  Game:169 - FPS: 106 updates: 60
+2019-12-28 02:01:20 INFO  Game:169 - FPS: 104 updates: 60
+2019-12-28 02:01:21 INFO  Game:169 - FPS: 106 updates: 60
+2019-12-28 02:01:22 INFO  Game:169 - FPS: 105 updates: 60
+2019-12-28 02:01:23 INFO  Game:169 - FPS: 105 updates: 60
+2019-12-28 02:01:24 INFO  Game:169 - FPS: 102 updates: 60
+2019-12-28 02:01:25 INFO  Game:169 - FPS: 101 updates: 60
+2019-12-28 02:01:26 INFO  Game:169 - FPS: 100 updates: 60
+2019-12-28 02:01:27 INFO  Game:169 - FPS: 92 updates: 60
+2019-12-28 02:01:28 INFO  Game:169 - FPS: 108 updates: 60
+2019-12-28 02:01:29 INFO  Game:169 - FPS: 108 updates: 60
+2019-12-28 02:01:30 INFO  Game:169 - FPS: 104 updates: 60
+2019-12-28 02:01:31 INFO  Game:169 - FPS: 108 updates: 60
+2019-12-28 02:01:38 INFO  Game:169 - FPS: 139 updates: 59
+2019-12-28 02:01:39 INFO  Game:169 - FPS: 136 updates: 60
+2019-12-28 02:01:40 INFO  Game:169 - FPS: 137 updates: 60
+2019-12-28 02:01:42 INFO  Game:169 - FPS: 96 updates: 59
+2019-12-28 02:02:09 INFO  Game:169 - FPS: 42 updates: 59
+2019-12-28 02:02:10 INFO  Game:169 - FPS: 52 updates: 60
+2019-12-28 02:02:11 INFO  Game:169 - FPS: 56 updates: 60
+2019-12-28 03:18:43 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:43 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:43 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:43 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:43 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:43 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:43 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:18:44 WARN  SpriteSheet:17 - dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:19:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@1c655221
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@726f3b58
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@368102c8
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@7fbe847c
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@dcf3e99
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@1ee0005
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@6f2b958e
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@515f550a
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@1c4af82c
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@5e265ba4
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@7de26db8
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@76ccd017
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@4361bd48
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@7637f22
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@5d22bbb7
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@7d6f77cc
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@6f75e721
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@782830e
+2019-12-28 03:20:03 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@33833882
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@53e25b76
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@1c655221
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@726f3b58
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@368102c8
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@7fbe847c
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@dcf3e99
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@1ee0005
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@6f2b958e
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@515f550a
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@1c4af82c
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@5e265ba4
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@7de26db8
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@76ccd017
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@4361bd48
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@7637f22
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@5d22bbb7
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@7d6f77cc
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@6f75e721
+2019-12-28 03:20:25 WARN  SpriteSheet:17 - [Ljava.lang.StackTraceElement;@782830e
+2019-12-28 03:22:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:30 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 03:22:32 WARN  SpriteSheet:17 - java.lang.Exception: dsf
+2019-12-28 15:44:56 DEBUG Game:162 - FPS: 37 updates: 59
+2019-12-28 15:44:57 DEBUG Game:162 - FPS: 66 updates: 60
+2019-12-28 15:44:58 DEBUG Game:162 - FPS: 73 updates: 60
+2019-12-28 15:44:59 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 15:45:00 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 15:45:01 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 15:45:02 DEBUG Game:162 - FPS: 69 updates: 60
+2019-12-28 15:45:03 DEBUG Game:162 - FPS: 73 updates: 60
+2019-12-28 15:45:04 DEBUG Game:162 - FPS: 67 updates: 60
+2019-12-28 15:45:05 DEBUG Game:162 - FPS: 74 updates: 60
+2019-12-28 15:45:06 DEBUG Game:162 - FPS: 88 updates: 60
+2019-12-28 15:45:07 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 15:45:08 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 15:45:09 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 15:45:10 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 15:45:11 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 15:45:12 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 15:45:13 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 15:45:14 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 15:45:15 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 15:45:16 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 15:45:17 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 15:45:18 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 15:45:19 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 15:45:20 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 15:45:21 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 15:45:22 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 15:45:23 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 15:45:24 DEBUG Game:162 - FPS: 75 updates: 60
+2019-12-28 15:45:25 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 15:45:26 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 15:45:27 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 15:45:28 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 15:45:29 DEBUG Game:162 - FPS: 75 updates: 60
+2019-12-28 15:45:30 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 15:45:31 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 15:45:32 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 15:45:33 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 15:45:34 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 15:45:35 DEBUG Game:162 - FPS: 95 updates: 60
+2019-12-28 15:45:46 DEBUG Game:162 - FPS: 42 updates: 55
+2019-12-28 15:45:47 DEBUG Game:162 - FPS: 35 updates: 64
+2019-12-28 15:45:48 DEBUG Game:162 - FPS: 64 updates: 60
+2019-12-28 15:45:48 DEBUG Game:162 - FPS: 69 updates: 60
+2019-12-28 15:45:49 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 15:45:50 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 15:45:51 DEBUG Game:162 - FPS: 82 updates: 60
+2019-12-28 15:45:52 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 15:45:53 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 15:45:54 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 15:45:55 DEBUG Game:162 - FPS: 82 updates: 60
+2019-12-28 15:45:57 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 15:45:57 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 15:45:58 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 15:45:59 DEBUG Game:162 - FPS: 83 updates: 60
+2019-12-28 15:46:01 DEBUG Game:162 - FPS: 93 updates: 60
+2019-12-28 15:46:01 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 15:47:02 WARN  Game:38 - java.io.IOException: Can't read res\RETRO_SPACE.ttf
+2019-12-28 15:48:42 FATAL Game:38 - java.io.IOException: Can't read res\RETRO_SPACE.ttf
+2019-12-28 17:32:09 DEBUG Game:162 - FPS: 56 updates: 48
+2019-12-28 17:32:10 DEBUG Game:162 - FPS: 27 updates: 71
+2019-12-28 17:32:11 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:32:12 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 17:32:13 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:32:14 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:32:15 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 17:32:16 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 17:32:17 DEBUG Game:162 - FPS: 88 updates: 60
+2019-12-28 17:32:18 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:32:19 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:32:20 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 17:32:21 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 17:32:22 DEBUG Game:162 - FPS: 96 updates: 60
+2019-12-28 17:32:23 DEBUG Game:162 - FPS: 83 updates: 60
+2019-12-28 17:32:24 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 17:32:25 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:32:26 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:32:27 DEBUG Game:162 - FPS: 75 updates: 60
+2019-12-28 17:32:28 DEBUG Game:162 - FPS: 97 updates: 60
+2019-12-28 17:32:29 DEBUG Game:162 - FPS: 92 updates: 60
+2019-12-28 17:32:30 DEBUG Game:162 - FPS: 88 updates: 60
+2019-12-28 17:32:31 DEBUG Game:162 - FPS: 98 updates: 60
+2019-12-28 17:32:32 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:32:33 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:32:34 DEBUG Game:162 - FPS: 83 updates: 60
+2019-12-28 17:32:35 DEBUG Game:162 - FPS: 88 updates: 60
+2019-12-28 17:32:36 DEBUG Game:162 - FPS: 93 updates: 60
+2019-12-28 17:32:37 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:32:38 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:32:39 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 17:32:40 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:32:41 DEBUG Game:162 - FPS: 105 updates: 60
+2019-12-28 17:32:42 DEBUG Game:162 - FPS: 117 updates: 60
+2019-12-28 17:32:43 DEBUG Game:162 - FPS: 114 updates: 60
+2019-12-28 17:32:44 DEBUG Game:162 - FPS: 113 updates: 60
+2019-12-28 17:32:46 DEBUG Game:162 - FPS: 69 updates: 59
+2019-12-28 17:32:47 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 17:32:48 DEBUG Game:162 - FPS: 78 updates: 60
+2019-12-28 17:32:49 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:32:50 DEBUG Game:162 - FPS: 82 updates: 60
+2019-12-28 17:32:51 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:32:52 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:32:53 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 17:37:19 DEBUG Game:162 - FPS: 46 updates: 59
+2019-12-28 17:38:11 DEBUG Game:162 - FPS: 59 updates: 59
+2019-12-28 17:38:12 DEBUG Game:162 - FPS: 74 updates: 60
+2019-12-28 17:38:13 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 17:38:14 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 17:38:15 DEBUG Game:162 - FPS: 7 updates: 4
+2019-12-28 17:38:16 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:38:17 DEBUG Game:162 - FPS: 74 updates: 59
+2019-12-28 17:38:18 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:39:27 DEBUG Game:162 - FPS: 20 updates: 23
+2019-12-28 17:39:27 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:39:28 DEBUG Game:162 - FPS: 37 updates: 28
+2019-12-28 17:39:29 DEBUG Game:162 - FPS: 76 updates: 60
+2019-12-28 17:39:30 DEBUG Game:162 - FPS: 84 updates: 61
+2019-12-28 17:39:31 DEBUG Game:162 - FPS: 80 updates: 59
+2019-12-28 17:39:32 DEBUG Game:162 - FPS: 83 updates: 60
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 43 updates: 27
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 0
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 0
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 0
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 0
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 1
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 1 updates: 0
+2019-12-28 17:40:04 DEBUG Game:162 - FPS: 20 updates: 14
+2019-12-28 17:40:05 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 17:40:06 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 17:40:07 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 17:40:08 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:40:09 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 17:40:10 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:40:11 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 17:40:47 DEBUG Game:162 - FPS: 47 updates: 57
+2019-12-28 17:40:48 DEBUG Game:162 - FPS: 53 updates: 62
+2019-12-28 17:40:49 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 17:40:50 DEBUG Game:162 - FPS: 88 updates: 60
+2019-12-28 17:40:51 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:40:52 DEBUG Game:162 - FPS: 88 updates: 60
+2019-12-28 17:41:13 DEBUG Game:162 - FPS: 42 updates: 59
+2019-12-28 17:41:14 DEBUG Game:162 - FPS: 53 updates: 60
+2019-12-28 17:41:15 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:41:16 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:41:17 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 17:41:18 DEBUG Game:162 - FPS: 94 updates: 60
+2019-12-28 17:41:28 DEBUG Game:162 - FPS: 78 updates: 59
+2019-12-28 17:41:29 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:41:30 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 17:41:31 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 17:41:32 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:41:33 DEBUG Game:162 - FPS: 94 updates: 60
+2019-12-28 17:41:34 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:41:35 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:41:36 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:41:37 DEBUG Game:162 - FPS: 94 updates: 60
+2019-12-28 17:41:38 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:41:39 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:41:40 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:41:41 DEBUG Game:162 - FPS: 68 updates: 60
+2019-12-28 17:41:42 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:41:43 DEBUG Game:162 - FPS: 99 updates: 60
+2019-12-28 17:41:44 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:41:45 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:41:46 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:41:47 DEBUG Game:162 - FPS: 94 updates: 60
+2019-12-28 17:41:48 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:41:49 DEBUG Game:162 - FPS: 97 updates: 60
+2019-12-28 17:41:50 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:41:51 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:41:52 DEBUG Game:162 - FPS: 103 updates: 60
+2019-12-28 17:41:53 DEBUG Game:162 - FPS: 82 updates: 60
+2019-12-28 17:41:54 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:41:55 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:41:56 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:41:57 DEBUG Game:162 - FPS: 94 updates: 60
+2019-12-28 17:41:58 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:41:59 DEBUG Game:162 - FPS: 88 updates: 60
+2019-12-28 17:42:00 DEBUG Game:162 - FPS: 92 updates: 60
+2019-12-28 17:42:01 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:42:02 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:42:03 DEBUG Game:162 - FPS: 96 updates: 60
+2019-12-28 17:42:04 DEBUG Game:162 - FPS: 103 updates: 60
+2019-12-28 17:42:05 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:42:06 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:42:07 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:42:08 DEBUG Game:162 - FPS: 76 updates: 60
+2019-12-28 17:42:09 DEBUG Game:162 - FPS: 93 updates: 60
+2019-12-28 17:42:10 DEBUG Game:162 - FPS: 94 updates: 60
+2019-12-28 17:42:11 DEBUG Game:162 - FPS: 102 updates: 60
+2019-12-28 17:42:12 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:42:13 DEBUG Game:162 - FPS: 93 updates: 60
+2019-12-28 17:42:14 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:42:15 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:42:16 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:42:17 DEBUG Game:162 - FPS: 92 updates: 60
+2019-12-28 17:42:18 DEBUG Game:162 - FPS: 132 updates: 60
+2019-12-28 17:42:19 DEBUG Game:162 - FPS: 131 updates: 60
+2019-12-28 17:42:20 DEBUG Game:162 - FPS: 127 updates: 60
+2019-12-28 17:46:40 DEBUG Game:162 - FPS: 50 updates: 59
+2019-12-28 17:46:41 DEBUG Game:162 - FPS: 69 updates: 60
+2019-12-28 17:46:42 DEBUG Game:162 - FPS: 76 updates: 60
+2019-12-28 17:46:43 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:46:44 DEBUG Game:162 - FPS: 81 updates: 59
+2019-12-28 17:46:45 DEBUG Game:162 - FPS: 86 updates: 61
+2019-12-28 17:46:46 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 17:46:47 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 17:46:48 DEBUG Game:162 - FPS: 74 updates: 60
+2019-12-28 17:46:49 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 17:46:50 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 17:46:51 DEBUG Game:162 - FPS: 83 updates: 60
+2019-12-28 17:46:52 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:46:53 DEBUG Game:162 - FPS: 82 updates: 60
+2019-12-28 17:46:54 DEBUG Game:162 - FPS: 85 updates: 60
+2019-12-28 17:46:55 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 17:46:56 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:46:57 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:46:58 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:46:59 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:47:00 DEBUG Game:162 - FPS: 82 updates: 60
+2019-12-28 17:47:01 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 17:47:02 DEBUG Game:162 - FPS: 76 updates: 60
+2019-12-28 17:47:03 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:47:04 DEBUG Game:162 - FPS: 91 updates: 60
+2019-12-28 17:47:05 DEBUG Game:162 - FPS: 79 updates: 60
+2019-12-28 17:47:06 DEBUG Game:162 - FPS: 88 updates: 60
+2019-12-28 17:47:07 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 17:47:08 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 17:47:09 DEBUG Game:162 - FPS: 75 updates: 60
+2019-12-28 17:47:10 DEBUG Game:162 - FPS: 72 updates: 60
+2019-12-28 17:47:11 DEBUG Game:162 - FPS: 80 updates: 60
+2019-12-28 17:47:12 DEBUG Game:162 - FPS: 92 updates: 60
+2019-12-28 17:47:13 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 17:47:14 DEBUG Game:162 - FPS: 90 updates: 60
+2019-12-28 17:47:15 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 17:47:16 DEBUG Game:162 - FPS: 103 updates: 60
+2019-12-28 17:47:17 DEBUG Game:162 - FPS: 81 updates: 60
+2019-12-28 17:47:18 DEBUG Game:162 - FPS: 83 updates: 60
+2019-12-28 17:47:19 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:47:20 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:47:21 DEBUG Game:162 - FPS: 78 updates: 60
+2019-12-28 17:47:22 DEBUG Game:162 - FPS: 86 updates: 60
+2019-12-28 17:47:23 DEBUG Game:162 - FPS: 95 updates: 60
+2019-12-28 17:47:24 DEBUG Game:162 - FPS: 121 updates: 60
+2019-12-28 17:47:25 DEBUG Game:162 - FPS: 111 updates: 60
+2019-12-28 17:47:26 DEBUG Game:162 - FPS: 108 updates: 60
+2019-12-28 18:25:28 DEBUG Game:162 - FPS: 71 updates: 59
+2019-12-28 18:25:29 DEBUG Game:162 - FPS: 77 updates: 60
+2019-12-28 18:25:30 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 18:25:31 DEBUG Game:162 - FPS: 101 updates: 60
+2019-12-28 18:25:32 DEBUG Game:162 - FPS: 97 updates: 60
+2019-12-28 18:25:33 DEBUG Game:162 - FPS: 108 updates: 60
+2019-12-28 18:25:34 DEBUG Game:162 - FPS: 105 updates: 60
+2019-12-28 18:25:35 DEBUG Game:162 - FPS: 106 updates: 60
+2019-12-28 18:25:36 DEBUG Game:162 - FPS: 107 updates: 60
+2019-12-28 18:25:37 DEBUG Game:162 - FPS: 107 updates: 60
+2019-12-28 18:25:38 DEBUG Game:162 - FPS: 109 updates: 60
+2019-12-28 18:25:39 DEBUG Game:162 - FPS: 109 updates: 60
+2019-12-28 18:25:40 DEBUG Game:162 - FPS: 107 updates: 60
+2019-12-28 18:25:41 DEBUG Game:162 - FPS: 87 updates: 60
+2019-12-28 18:25:42 DEBUG Game:162 - FPS: 84 updates: 60
+2019-12-28 18:25:43 DEBUG Game:162 - FPS: 89 updates: 60
+2019-12-28 18:25:44 DEBUG Game:162 - FPS: 108 updates: 60
+2019-12-28 18:25:45 DEBUG Game:162 - FPS: 109 updates: 60
+2019-12-28 18:25:46 DEBUG Game:162 - FPS: 108 updates: 60
+2019-12-28 18:25:47 DEBUG Game:162 - FPS: 107 updates: 60
+2019-12-28 18:25:48 DEBUG Game:162 - FPS: 106 updates: 60
+2019-12-28 18:25:49 DEBUG Game:162 - FPS: 107 updates: 60
+2019-12-28 18:25:50 DEBUG Game:162 - FPS: 108 updates: 60
+2019-12-28 18:25:51 DEBUG Game:162 - FPS: 109 updates: 60
+2019-12-28 18:25:52 DEBUG Game:162 - FPS: 106 updates: 60
+2019-12-28 18:25:53 DEBUG Game:162 - FPS: 110 updates: 60
+2019-12-28 18:25:54 DEBUG Game:162 - FPS: 110 updates: 60
+2019-12-28 18:25:55 DEBUG Game:162 - FPS: 108 updates: 60
+2019-12-28 18:25:56 DEBUG Game:162 - FPS: 108 updates: 60
+2019-12-28 18:25:57 DEBUG Game:162 - FPS: 109 updates: 60
+2019-12-28 18:25:58 DEBUG Game:162 - FPS: 105 updates: 60
+2019-12-28 18:25:59 DEBUG Game:162 - FPS: 103 updates: 60
+2019-12-28 18:26:00 DEBUG Game:162 - FPS: 107 updates: 60
+2019-12-28 18:26:01 DEBUG Game:162 - FPS: 110 updates: 60
+2019-12-28 18:26:02 DEBUG Game:162 - FPS: 109 updates: 60
+2019-12-28 18:26:03 DEBUG Game:162 - FPS: 105 updates: 60
+2019-12-28 18:26:04 DEBUG Game:162 - FPS: 102 updates: 60
+2019-12-28 18:26:05 DEBUG Game:162 - FPS: 105 updates: 60
+2019-12-28 18:26:06 DEBUG Game:162 - FPS: 104 updates: 60
+2019-12-28 18:26:07 DEBUG Game:162 - FPS: 107 updates: 60
+2019-12-28 18:26:08 DEBUG Game:162 - FPS: 109 updates: 60
+2019-12-28 18:26:09 DEBUG Game:162 - FPS: 111 updates: 60
+2019-12-28 18:26:10 DEBUG Game:162 - FPS: 111 updates: 60
+2019-12-28 18:26:11 DEBUG Game:162 - FPS: 112 updates: 60
+2019-12-28 18:26:12 DEBUG Game:162 - FPS: 112 updates: 60
+2019-12-28 18:26:13 DEBUG Game:162 - FPS: 110 updates: 60
+2019-12-28 18:26:14 DEBUG Game:162 - FPS: 111 updates: 60
+2019-12-28 18:26:15 DEBUG Game:162 - FPS: 110 updates: 60
+2019-12-28 18:26:16 DEBUG Game:162 - FPS: 103 updates: 60
+2019-12-28 18:26:17 DEBUG Game:162 - FPS: 130 updates: 60
+2019-12-28 18:26:18 DEBUG Game:162 - FPS: 140 updates: 60
+2019-12-28 18:26:19 DEBUG Game:162 - FPS: 138 updates: 60
+2019-12-28 18:26:20 DEBUG Game:162 - FPS: 140 updates: 60
+2019-12-28 18:26:21 DEBUG Game:162 - FPS: 142 updates: 60
+2019-12-28 18:26:22 DEBUG Game:162 - FPS: 143 updates: 60
+2019-12-28 18:26:23 DEBUG Game:162 - FPS: 140 updates: 60
+2019-12-28 18:26:24 DEBUG Game:162 - FPS: 142 updates: 60
+2019-12-28 18:26:25 DEBUG Game:162 - FPS: 144 updates: 60
+2019-12-28 18:26:26 DEBUG Game:162 - FPS: 145 updates: 60
+2019-12-28 18:26:27 DEBUG Game:162 - FPS: 145 updates: 60
+2019-12-28 18:26:28 DEBUG Game:162 - FPS: 144 updates: 60
+2019-12-28 18:26:29 DEBUG Game:162 - FPS: 142 updates: 60
+2019-12-28 18:26:30 DEBUG Game:162 - FPS: 139 updates: 60
+2019-12-28 18:26:31 DEBUG Game:162 - FPS: 141 updates: 60
+2019-12-28 18:26:32 DEBUG Game:162 - FPS: 139 updates: 60

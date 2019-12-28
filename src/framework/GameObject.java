@@ -5,7 +5,6 @@ import main.Game;
 import java.awt.*;
 
 public abstract class GameObject {
-
     protected float x;
     protected float y;
     protected Textures textures;

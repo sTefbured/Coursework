@@ -1,4 +1,4 @@
-package gameObjects;
+package gameobjects;
 
 // int red = (rgb >> 16) & 0xff;
 // int green = (rgb >> 8) & 0xff;

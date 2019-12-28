@@ -1,22 +1,22 @@
 package framework;
 
-import gameObjects.*;
+import gameobjects.*;
 import main.Handler;
 
 import java.awt.*;
 
 public abstract class Sprite extends MovingObject {
-    protected final float GRAVITY = 0.5f;
+    protected static final float GRAVITY = 0.5f;
 
     protected int healthPoints;
     protected Animation animation;
     protected boolean isFalling;
     protected boolean isJumping;
-    public boolean isShooting;
-    public boolean isGettingDamage;
+    private boolean isShooting;
+    private boolean isGettingDamage;
     protected boolean isFacingLeft;
-    public long timerShooting;
-    public long timerGettingDamage;
+    private long timerShooting;
+    private long timerGettingDamage;
     private long deathTime;
 
     protected Sprite(float x, float y, int healthPoints, boolean isFacingLeft, Handler handler) {
@@ -60,10 +60,10 @@ public abstract class Sprite extends MovingObject {
             y = block.getY() + Block.HEIGHT;
             speedY = 0;
             isFalling = true;
-            if ((block instanceof MysteryBox) && ((MysteryBox) block).isFilled) {
+            if ((block instanceof MysteryBox) && ((MysteryBox) block).isFilled()) {
                 handler.getBonuses().add(new Bonus(block.getX() + (float) Block.WIDTH / 2 - (float) Bonus.WIDTH / 2,
                         block.getY() - Bonus.HEIGHT, handler));
-                ((MysteryBox) block).isFilled = false;
+                ((MysteryBox) block).setFilled(false);
             }
         }
     }
@@ -122,15 +122,15 @@ public abstract class Sprite extends MovingObject {
         x += speedX;
         y += speedY;
 
-        if ((healthPoints <= 0) && !isDead) {
-            isDead = true;
+        if ((healthPoints <= 0) && !isDead()) {
+            setDead(true);
             healthPoints = 0;
             deathTime = System.currentTimeMillis();
             speedX = 0;
             speedY = 0;
         }
 
-        if (!isDead) {
+        if (!isDead()) {
             if (isFalling || isJumping) {
                 speedY += GRAVITY;
             }
@@ -164,6 +164,38 @@ public abstract class Sprite extends MovingObject {
     }
 
     public boolean mustBeRemoved() {
-        return isDead && ((System.currentTimeMillis() - deathTime) >= 2000);
+        return isDead() && ((System.currentTimeMillis() - deathTime) >= 2000);
+    }
+
+    public boolean isShooting() {
+        return isShooting;
+    }
+
+    public void setShooting(boolean shooting) {
+        isShooting = shooting;
+    }
+
+    public boolean isGettingDamage() {
+        return isGettingDamage;
+    }
+
+    public void setGettingDamage(boolean gettingDamage) {
+        isGettingDamage = gettingDamage;
+    }
+
+    public long getTimerShooting() {
+        return timerShooting;
+    }
+
+    public void setTimerShooting(long timerShooting) {
+        this.timerShooting = timerShooting;
+    }
+
+    public long getTimerGettingDamage() {
+        return timerGettingDamage;
+    }
+
+    public void setTimerGettingDamage(long timerGettingDamage) {
+        this.timerGettingDamage = timerGettingDamage;
     }
 }

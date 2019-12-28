@@ -7,13 +7,13 @@ import main.LevelLoader;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-
+//TODO: Change button's colors
 public class LevelsList extends Menu {
     private Game game;
 
     public LevelsList(Game game) {
         super(Game.WINDOW_WIDTH / 2, Game.WINDOW_HEIGHT / 2,
-                Game.font, Color.PINK, Color.YELLOW, new String[LevelLoader.numberOfLevels + 1]);
+                Game.getFont1(), Color.PINK, Color.YELLOW, new String[LevelLoader.getNumberOfLevels() + 1]);
         for (int i = 0; i < buttons.length - 1; i++) {
             buttons[i] = "STAGE " + (i + 1);
         }
@@ -25,7 +25,7 @@ public class LevelsList extends Menu {
     public void render(Graphics2D graphics2D) {
         graphics2D.setColor(Color.BLUE);
         graphics2D.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
-        renderButtons(LevelLoader.numberOfLevels, graphics2D);
+        renderButtons(LevelLoader.getNumberOfLevels(), graphics2D);
 
         if (buttons.length - 1 == currentChoice) {
             graphics2D.setFont(font.deriveFont(Font.PLAIN, 40));
@@ -41,8 +41,8 @@ public class LevelsList extends Menu {
     public void keyPressed(KeyEvent keyEvent) {
         super.keyPressed(keyEvent);
         if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            game.currentState = Game.State.MAIN_MENU;
-            game.currentState.isChanged = true;
+            game.setCurrentState(Game.State.MAIN_MENU);
+            game.getCurrentState().setChanged(true);
             game.removeKeyListener(this);
         }
     }
@@ -51,14 +51,14 @@ public class LevelsList extends Menu {
     protected void pressButton() {
         game.removeKeyListener(this);
         if (currentChoice == buttons.length - 1) {
-            game.currentState = Game.State.MAIN_MENU;
-            game.currentState.isChanged = true;
+            game.setCurrentState(Game.State.MAIN_MENU);
+            game.getCurrentState().setChanged(true);
             return;
         }
         LevelLoader.setCurrentLevel(currentChoice);
-        game.currentState = Game.State.RUNNING;
-        game.currentState.isChanged = true;
-        Game.isRunning = true;
+        game.setCurrentState(Game.State.RUNNING);
+        game.getCurrentState().setChanged(true);
+        Game.setRunning(true);
         game.setPlayerAlive();
     }
 }

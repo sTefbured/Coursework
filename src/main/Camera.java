@@ -1,9 +1,10 @@
 package main;
 
-import gameObjects.Player;
+import gameobjects.Player;
 
 public class Camera {
-    private int x, y; //coordinates on the screen
+    private int x;
+    private int y; //coordinates on the screen
 
     public Camera(int x) {
         setX(x);

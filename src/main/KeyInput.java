@@ -1,8 +1,6 @@
 package main;
 
-import gameObjects.Player;
-import main.Game;
-import main.Handler;
+import gameobjects.Player;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -19,7 +17,7 @@ public class KeyInput extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         Player player = handler.getPlayer();
-        if ((player == null) || (player.isDead) || (player.isGettingDamage)) {
+        if ((player == null) || (player.isDead()) || (player.isGettingDamage())) {
             return;
         }
         switch (keyEvent.getKeyCode()) {
@@ -41,22 +39,21 @@ public class KeyInput extends KeyAdapter {
                 }
                 break;
             case KeyEvent.VK_ESCAPE:
-                game.currentState = Game.State.PAUSE;
-                game.currentState.isChanged = true;
+                game.setCurrentState(Game.State.PAUSE);
+                game.getCurrentState().setChanged(true);
                 break;
             case KeyEvent.VK_CONTROL:
-                if (!player.isShooting) {
+                if (!player.isShooting()) {
                     player.shoot();
                 }
                 break;
         }
     }
 
-
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         Player player = handler.getPlayer();
-        if ((player == null) || (player.isGettingDamage)) {
+        if ((player == null) || (player.isGettingDamage())) {
             return;
         }
         switch (keyEvent.getKeyCode()) {

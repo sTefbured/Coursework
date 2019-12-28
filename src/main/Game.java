@@ -2,7 +2,8 @@ package main;
 
 import framework.Menu;
 import framework.Textures;
-import gameObjects.Player;
+import gameobjects.Player;
+import lombok.extern.log4j.Log4j;
 import menus.*;
 
 import javax.swing.*;
@@ -10,9 +11,11 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.File;
 
+@Log4j
 public class Game extends Canvas {
-    public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 830; // 30x25 blocks
-    public static final String title = "My platformer";
+    public static final int WINDOW_WIDTH = 1080;
+    public static final int WINDOW_HEIGHT = 830; // 30x25 blocks
+    public static final String TITLE = "My platformer";
     private static final Image iconImage = new ImageIcon("res/icon.png").getImage();
     private static final Image[] background = new Image[]{
             new ImageIcon("res/bglayer0.png").getImage(),
@@ -20,26 +23,28 @@ public class Game extends Canvas {
             new ImageIcon("res/bglayer2.png").getImage(),
     };
 
-    public enum State {
-        MAIN_MENU,
-        LEVELS_LIST,
-        HELP,
-        CREDITS,
-        RUNNING,
-        PAUSE,
-        GAME_OVER;
+    private static Game instance;
 
-        public boolean isChanged;
+    private static Font font1;
+    private static Font font2;
+    private static boolean isRunning;
+    private static Textures textures;
+
+    static {
+        try {
+            font1 = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE.ttf"));
+            font2 = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE_INV.ttf"));
+        } catch (Exception e) {
+            log.fatal(e.toString());
+        }
+        textures = new Textures();
     }
 
-    public static Font font, font1;
-    public static boolean isRunning;
     private Handler handler;
     private Camera camera;
-    private static Textures textures;
     private LevelLoader levelLoader;
     BufferStrategy bufferStrategy;
-    public State currentState;
+    private State currentState;
     private KeyInput keyInput;
 
     private MainMenu mainMenu;
@@ -50,20 +55,12 @@ public class Game extends Canvas {
     private Pause pause;
 
     private Game() {
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE.ttf"));
-            font1 = Font.createFont(Font.TRUETYPE_FONT, new File("res/RETRO_SPACE_INV.ttf"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        isRunning = false;
-        textures = new Textures();
         handler = new Handler(this);
-        levelLoader = new LevelLoader(handler, camera, this);
+        levelLoader = new LevelLoader(handler, camera);
         currentState = State.MAIN_MENU;
         currentState.isChanged = true;
 
-        mainMenu = new MainMenu(200, Game.WINDOW_HEIGHT / 2, font,
+        mainMenu = new MainMenu(200, Game.WINDOW_HEIGHT / 2, font1,
                 Color.RED, Color.GREEN, this, textures);
         levelsList = new LevelsList(this);
         helpMenu = new HelpMenu(this);
@@ -71,7 +68,14 @@ public class Game extends Canvas {
         gameOver = new GameOver(this);
         pause = new Pause(this);
 
-        new Window(WINDOW_WIDTH, WINDOW_HEIGHT, title, iconImage, this);
+        new Window(WINDOW_WIDTH, WINDOW_HEIGHT, TITLE, iconImage, this);
+    }
+
+    public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
+        return instance;
     }
 
     public void startMenu() {
@@ -91,26 +95,21 @@ public class Game extends Canvas {
     private void showMenu() {
         Graphics2D graphics2D = (Graphics2D) bufferStrategy.getDrawGraphics();
         switch (currentState) {
-            case MAIN_MENU: {
+            case MAIN_MENU:
                 loadMenu(mainMenu, graphics2D);
                 break;
-            }
-            case LEVELS_LIST: {
+            case LEVELS_LIST:
                 loadMenu(levelsList, graphics2D);
                 break;
-            }
-            case HELP: {
+            case HELP:
                 loadMenu(helpMenu, graphics2D);
                 break;
-            }
-            case CREDITS: {
+            case CREDITS:
                 loadMenu(credits, graphics2D);
                 break;
-            }
-            case GAME_OVER: {
+            case GAME_OVER:
                 loadMenu(gameOver, graphics2D);
                 break;
-            }
         }
         bufferStrategy.show();
     }
@@ -160,18 +159,18 @@ public class Game extends Canvas {
 
             if (System.nanoTime() - time >= oneSecond) {
                 time += oneSecond;
-                System.out.println("FPS: " + frames + " updates: " + updates);
+                log.debug("FPS: " + frames + " updates: " + updates);
                 updates = frames = 0;
             }
 
             if (!isRunning) {
-                if (handler.getPlayer().isDead) {
-                    handler.getPlayer().isDead = false;
+                if (handler.getPlayer().isDead()) {
+                    handler.getPlayer().setDead(false);
                     currentState = State.GAME_OVER;
                     currentState.isChanged = true;
                     removeKeyListener(keyInput);
                     handler.clearLevel();
-                } else if (LevelLoader.getCurrentLevel() < LevelLoader.numberOfLevels) {
+                } else if (LevelLoader.getCurrentLevel() < LevelLoader.getNumberOfLevels()) {
                     levelLoader.loadLevel();
                     isRunning = true;
                 } else {    //TODO: Add "congratulations" menu, maybe scores
@@ -215,12 +214,43 @@ public class Game extends Canvas {
         menu.render(graphics2D);
     }
 
+    public static Font getFont1() {
+        return font1;
+    }
+
+    public static Font getFont2() {
+        return font2;
+    }
+
+    public static void  setRunning(boolean isRunning) {
+        Game.isRunning = isRunning;
+    }
+
     public void setPlayerAlive() {
         handler.getPlayer().setAlive();
     }
 
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.startMenu();
+    public State getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(State currentState) {
+        this.currentState = currentState;
+    }
+
+    public enum State {
+        MAIN_MENU,
+        LEVELS_LIST,
+        HELP,
+        CREDITS,
+        RUNNING,
+        PAUSE,
+        GAME_OVER;
+
+        private boolean isChanged;
+
+        public void setChanged(boolean isChanged) {
+            this.isChanged = isChanged;
+        }
     }
 }

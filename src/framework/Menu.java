@@ -7,9 +7,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public abstract class Menu extends KeyAdapter {
-    private int x, y;
+    private int x;
+    private int y;
     protected Font font;
-    protected Color buttonColor, activeButtonColor;
+    protected Color buttonColor;
+    protected Color activeButtonColor;
     protected String[] buttons;
     protected int currentChoice;
 
@@ -26,20 +28,19 @@ public abstract class Menu extends KeyAdapter {
     protected void renderButtons(int buttonsCount, Graphics2D graphics2D) {
         for (int i = 0; i < buttonsCount; i++) {
             if (i == currentChoice) {
-                graphics2D.setFont(Game.font1.deriveFont(Font.PLAIN, 40));
+                graphics2D.setFont(Game.getFont2().deriveFont(Font.PLAIN, 40));
                 graphics2D.setColor(activeButtonColor);
                 graphics2D.drawString(buttons[i], x, y + i * 50);
-                graphics2D.setFont(Game.font.deriveFont(Font.PLAIN, 40));
+                graphics2D.setFont(Game.getFont1().deriveFont(Font.PLAIN, 40));
                 graphics2D.setColor(Color.BLACK);
-                graphics2D.drawString(buttons[i], x, y + i * 50);
             } else {
-                graphics2D.setFont(Game.font.deriveFont(Font.PLAIN, 30));
+                graphics2D.setFont(Game.getFont1().deriveFont(Font.PLAIN, 30));
                 graphics2D.setColor(Color.BLACK);
                 graphics2D.drawString(buttons[i], x, y + i * 50);
-                graphics2D.setFont(Game.font1.deriveFont(Font.PLAIN, 30));
+                graphics2D.setFont(Game.getFont2().deriveFont(Font.PLAIN, 30));
                 graphics2D.setColor(buttonColor);
-                graphics2D.drawString(buttons[i], x, y + i * 50);
             }
+            graphics2D.drawString(buttons[i], x, y + i * 50);
         }
     }
 
@@ -50,26 +51,23 @@ public abstract class Menu extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getKeyCode()) {
-            case KeyEvent.VK_S:
-            case KeyEvent.VK_DOWN: {
+            case KeyEvent.VK_S: //drop
+            case KeyEvent.VK_DOWN:
                 currentChoice++;
                 if (currentChoice >= buttons.length) {
                     currentChoice = 0;
                 }
                 break;
-            }
             case KeyEvent.VK_W:
-            case KeyEvent.VK_UP: {
+            case KeyEvent.VK_UP:
                 currentChoice--;
                 if (currentChoice < 0) {
                     currentChoice = buttons.length - 1;
                 }
                 break;
-            }
-            case KeyEvent.VK_ENTER: {
+            case KeyEvent.VK_ENTER:
                 pressButton();
                 break;
-            }
         }
     }
 }

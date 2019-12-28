@@ -17,7 +17,7 @@ public class HelpMenu extends Menu {
     };
 
     public HelpMenu(Game game) {
-        super(20, Game.WINDOW_HEIGHT - 50, Game.font, Color.GREEN, Color.WHITE, new String[] { "BACK" });
+        super(20, Game.WINDOW_HEIGHT - 50, Game.getFont1(), Color.GREEN, Color.WHITE, new String[] { "BACK" });
         this.game = game;
     }
 
@@ -25,7 +25,7 @@ public class HelpMenu extends Menu {
     public void render(Graphics2D graphics2D) {
         graphics2D.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
         graphics2D.setColor(Color.ORANGE);
-        graphics2D.setFont(Game.font1.deriveFont(Font.PLAIN, 30));
+        graphics2D.setFont(Game.getFont2().deriveFont(Font.PLAIN, 30));
         for (int i = 0; i < keys.length; i++) {
             graphics2D.drawString(keys[i], Game.WINDOW_WIDTH / 3 - 100, 300 + i * 40);
         }
@@ -43,7 +43,7 @@ public class HelpMenu extends Menu {
     @Override
     protected void pressButton() {
         game.removeKeyListener(this);
-        game.currentState = Game.State.MAIN_MENU;
-        game.currentState.isChanged = true;
+        game.setCurrentState(Game.State.MAIN_MENU);
+        game.getCurrentState().setChanged(true);
     }
 }

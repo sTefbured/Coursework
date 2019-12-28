@@ -1,4 +1,4 @@
-package gameObjects;
+package gameobjects;
 
 import framework.Sprite;
 import main.Handler;
@@ -22,7 +22,7 @@ public class Bonus extends Sprite {
     public void update() {
         super.update();
         if ((System.currentTimeMillis() - startTime) >= 10000) {
-            isDead = true;
+            setDead(true);
         }
     }
 
@@ -44,7 +44,7 @@ public class Bonus extends Sprite {
 
     @Override
     protected void drawAnimation(Graphics2D graphics2D) {
-
+        //no animation yet
     }
 
     @Override

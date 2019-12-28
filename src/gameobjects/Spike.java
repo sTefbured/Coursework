@@ -1,12 +1,12 @@
-package gameObjects;
+package gameobjects;
 
 import java.awt.*;
 
 public class Spike extends Block {
-    private final int WIDTH = 32;
-    private final int HEIGHT = 16;
+    private static final int WIDTH = 32;
+    private static final int HEIGHT = 16;
 
-    public Spike(int x, int y) {
+    public Spike(float x, float y) {
         super(x, y, ObjectColor.SPIKE);
     }
 

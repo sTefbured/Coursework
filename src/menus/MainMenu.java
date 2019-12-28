@@ -3,7 +3,7 @@ package menus;
 import framework.Animation;
 import framework.Menu;
 import framework.Textures;
-import gameObjects.Player;
+import gameobjects.Player;
 import main.Game;
 import main.LevelLoader;
 
@@ -45,40 +45,35 @@ public class MainMenu extends Menu {
     private void renderTitle(Graphics2D graphics2D) {
         graphics2D.setColor(Color.GREEN);
         graphics2D.setFont(font.deriveFont(Font.PLAIN, 100));
-        graphics2D.drawString(Game.title, 80, 200);
+        graphics2D.drawString(Game.TITLE, 80, 200);
         graphics2D.setColor(Color.RED);
-        graphics2D.setFont(Game.font1.deriveFont(Font.PLAIN, 100));
-        graphics2D.drawString(Game.title, 80, 200);
+        graphics2D.setFont(Game.getFont2().deriveFont(Font.PLAIN, 100));
+        graphics2D.drawString(Game.TITLE, 80, 200);
     }
 
     @Override
     protected void pressButton() {
         switch (currentChoice) {
-            case 0: {
-                game.currentState = Game.State.RUNNING;
+            case 0:
+                game.setCurrentState(Game.State.RUNNING);
                 LevelLoader.setCurrentLevel(0);
-                Game.isRunning = true;
+                Game.setRunning(true);
                 game.setPlayerAlive();
                 break;
-            }
-            case 1: {
-                game.currentState = Game.State.LEVELS_LIST;
+            case 1:
+                game.setCurrentState(Game.State.LEVELS_LIST);
                 break;
-            }
-            case 2: {
-                game.currentState = Game.State.HELP;
+            case 2:
+                game.setCurrentState(Game.State.HELP);
                 break;
-            }
-            case 3: {
-                game.currentState = Game.State.CREDITS;
+            case 3:
+                game.setCurrentState(Game.State.CREDITS);
                 break;
-            }
-            case 4: {
+            case 4:
                 System.exit(0);
                 break;
-            }
         }
-        game.currentState.isChanged = true;
+        game.getCurrentState().setChanged(true);
         game.removeKeyListener(this);
     }
 }

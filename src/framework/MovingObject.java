@@ -3,11 +3,12 @@ package framework;
 import main.Handler;
 
 public abstract class MovingObject extends GameObject {
-    protected final int MAX_SPEED = 25;
+    protected static final int MAX_SPEED = 25;
 
-    protected float speedX, speedY;
+    protected float speedX;
+    protected float speedY;
     protected Handler handler;
-    public boolean isDead;
+    private boolean isDead;
 
     public MovingObject(float x, float y, Handler handler) {
         super(x, y);
@@ -26,4 +27,12 @@ public abstract class MovingObject extends GameObject {
     protected abstract void collision();
 
     public abstract void update();
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
 }

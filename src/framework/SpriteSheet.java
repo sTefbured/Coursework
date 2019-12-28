@@ -1,8 +1,11 @@
 package framework;
 
+import lombok.extern.log4j.Log4j;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
+@Log4j
 public class SpriteSheet {
     private BufferedImage image;
 
@@ -10,7 +13,7 @@ public class SpriteSheet {
         try {
             image = ImageIO.read(getClass().getResource(path));
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn(e.toString());
         }
     }
 

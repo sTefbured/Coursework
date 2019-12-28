@@ -1,9 +1,12 @@
 package framework;
 
+import lombok.extern.log4j.Log4j;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+@Log4j
 public class Textures {
     private BufferedImage[] playerAttackLeft;
     private BufferedImage[] playerAttackRight;
@@ -58,7 +61,7 @@ public class Textures {
             spikes = ImageIO.read(getClass().getResource("/spikes.png"));
             bonus = ImageIO.read(getClass().getResource("/bonus.png"));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.warn(e.toString());
         }
     }
 

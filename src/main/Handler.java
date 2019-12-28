@@ -1,6 +1,6 @@
 package main;
 
-import gameObjects.*;
+import gameobjects.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -68,9 +68,9 @@ public class Handler {
 
     public void update() {
         if (player.mustBeRemoved()) {
-            Game.isRunning = false;
-            game.currentState = Game.State.GAME_OVER;
-            game.currentState.isChanged = true;
+            Game.setRunning(false);
+            game.setCurrentState(Game.State.GAME_OVER);
+            game.getCurrentState().setChanged(true);
             return;
         }
         player.update();

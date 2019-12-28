@@ -10,10 +10,11 @@ public class GameOver extends Menu {
     private Game game;
 
     public GameOver(Game game) {
-        super(Game.WINDOW_WIDTH / 2 - 130, Game.WINDOW_HEIGHT / 2, Game.font,
+        super(Game.WINDOW_WIDTH / 2 - 130, Game.WINDOW_HEIGHT / 2 - 30, Game.getFont1(),
                 Color.yellow, Color.GREEN, new String[] {
                         "TRY AGAIN",
-                        "BACK TO MENU"
+                        "BACK TO MENU",
+                        "QUIT"
                 });
         this.game = game;
     }
@@ -23,30 +24,31 @@ public class GameOver extends Menu {
         graphics2D.setColor(Color.DARK_GRAY);
         graphics2D.fillRect(Game.WINDOW_WIDTH / 2 - 200, Game.WINDOW_HEIGHT / 2 - 100, 400, 200);
         graphics2D.setColor(Color.BLACK);
-        graphics2D.setFont(Game.font.deriveFont(Font.BOLD, 35));
+        graphics2D.setFont(Game.getFont1().deriveFont(Font.BOLD, 35));
         graphics2D.drawString("GAME OVER", Game.WINDOW_WIDTH / 2 - 100, Game.WINDOW_HEIGHT / 2 - 130);
         graphics2D.setColor(Color.RED);
-        graphics2D.setFont(Game.font1.deriveFont(Font.BOLD, 35));
+        graphics2D.setFont(Game.getFont2().deriveFont(Font.BOLD, 35));
         graphics2D.drawString("GAME OVER", Game.WINDOW_WIDTH / 2 - 100, Game.WINDOW_HEIGHT / 2 - 130);
-        renderButtons(2, graphics2D);
+        renderButtons(3, graphics2D);
     }
 
     @Override
     protected void pressButton() {
         switch (currentChoice) {
-            case 0: {
+            case 0:
                 LevelLoader.setCurrentLevel(LevelLoader.getCurrentLevel() - 1);
-                game.currentState = Game.State.RUNNING;
-                Game.isRunning = true;
+                game.setCurrentState(Game.State.RUNNING);
+                Game.setRunning(true);
                 game.setPlayerAlive();
                 break;
-            }
-            case 1: {
-                game.currentState = Game.State.MAIN_MENU;
+            case 1:
+                game.setCurrentState(Game.State.MAIN_MENU);
                 break;
-            }
+            case 2:
+                System.exit(0);
+                break;
         }
-        game.currentState.isChanged = true;
+        game.getCurrentState().setChanged(true);
         game.removeKeyListener(this);
     }
 }

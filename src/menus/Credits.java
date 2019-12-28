@@ -10,7 +10,7 @@ public class Credits extends Menu {
     private Game game;
 
     public Credits(Game game) {
-        super(20, Game.WINDOW_HEIGHT - 50, Game.font, Color.GREEN, Color.WHITE, new String[] { "BACK" });
+        super(20, Game.WINDOW_HEIGHT - 50, Game.getFont1(), Color.GREEN, Color.WHITE, new String[] { "BACK" });
         this.game = game;
     }
 
@@ -18,7 +18,7 @@ public class Credits extends Menu {
     public void render(Graphics2D graphics2D) {
         graphics2D.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
         graphics2D.setColor(Color.ORANGE);
-        graphics2D.setFont(Game.font.deriveFont(Font.PLAIN, 20));
+        graphics2D.setFont(Game.getFont1().deriveFont(Font.PLAIN, 20));
         graphics2D.drawString("Developer: Kotikov Stepan", Game.WINDOW_WIDTH / 3, Game.WINDOW_HEIGHT / 2);
         renderButtons(buttons.length, graphics2D);
     }
@@ -34,7 +34,7 @@ public class Credits extends Menu {
     @Override
     protected void pressButton() {
         game.removeKeyListener(this);
-        game.currentState = Game.State.MAIN_MENU;
-        game.currentState.isChanged = true;
+        game.setCurrentState(Game.State.MAIN_MENU);
+        game.getCurrentState().setChanged(true);
     }
 }

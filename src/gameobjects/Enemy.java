@@ -1,13 +1,15 @@
-package gameObjects;
+package gameobjects;
 
 import framework.Sprite;
 import main.Handler;
 
 import java.awt.*;
 
+//FIXME: Fix bug that appears when player dies
 public class Enemy extends Sprite {
-    private static final int WIDTH = 60, HEIGHT = 3 * Block.HEIGHT;
-    private final int VISIBILITY_RANGE = 1500;
+    private static final int WIDTH = 60;
+    private static final int HEIGHT = 3 * Block.HEIGHT;
+    private static final int VISIBILITY_RANGE = 1500;
     public static final int MAX_HEALTH = 50;
     private static final int IMG_DELTA = 10;
 
@@ -26,11 +28,11 @@ public class Enemy extends Sprite {
         } else if (speedX < 0) {
             isFacingLeft = true;
         }
-        if (isShooting && ((System.currentTimeMillis() - timerShooting) >= 700)) {
-            isShooting = false;
+        if (isShooting() && ((System.currentTimeMillis() - getTimerShooting()) >= 700)) {
+            setShooting(false);
         }
         super.update();
-        if (isDead) {
+        if (isDead()) {
             return;
         }
         float distance = (x + WIDTH / 2.0f) - (player.getX() + player.getWidth() / 2.0f);
@@ -85,14 +87,14 @@ public class Enemy extends Sprite {
     }
 
     private void attack() {
-        if (!isShooting && !player.isDead) {
+        if (!isShooting() && !player.isDead()) {
             shoot();
         }
     }
 
     private void shoot() {
-        isShooting = true;
-        timerShooting = System.currentTimeMillis();
+        setShooting(true);
+        setTimerShooting(System.currentTimeMillis());
         if (!isFacingLeft) {
             handler.getBullets().add(new Bullet(x + WIDTH + 5, y + (float) WIDTH / 2,
                     20, handler));
@@ -110,11 +112,6 @@ public class Enemy extends Sprite {
                 speedX = 3;
             }
         }
-    }
-
-    @Override
-    protected void collision() {
-        super.collision();
     }
 
     @Override
@@ -136,24 +133,24 @@ public class Enemy extends Sprite {
     @Override
     protected void drawAnimation(Graphics2D graphics2D) {
         if (isFacingLeft) {
-            if (isShooting) {
+            if (isShooting()) {
                 graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getEnemyAttackLeft()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (speedX != 0) {
                 graphics2D.drawImage(animation.getSpriteImage(15, true, textures.getEnemyWalkLeft()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
-            } else if (isDead) {
+            } else if (isDead()) {
                 graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getEnemyDieLeft()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             }
         } else {
-            if (isShooting) {
+            if (isShooting()) {
                 graphics2D.drawImage(animation.getSpriteImage(5, true, textures.getEnemyAttackRight()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             } else if (speedX != 0) {
                 graphics2D.drawImage(animation.getSpriteImage(15, true, textures.getEnemyWalkRight()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
-            } else if (isDead) {
+            } else if (isDead()) {
                 graphics2D.drawImage(animation.getSpriteImage(15, false, textures.getEnemyDieRight()),
                         (int) x - IMG_DELTA, (int) y, WIDTH + 2 * IMG_DELTA, HEIGHT, null);
             }
@@ -161,7 +158,8 @@ public class Enemy extends Sprite {
     }
 
     public Rectangle getVisibilityBounds() {
-        return new Rectangle((int) (x + WIDTH / 2) - VISIBILITY_RANGE / 2, (int) y + 5, VISIBILITY_RANGE, HEIGHT - 10);
+        return new Rectangle((int) (x + WIDTH / 2.0) - VISIBILITY_RANGE / 2,
+                (int) y + 5, VISIBILITY_RANGE, HEIGHT - 10);
     }
 
     @Override
