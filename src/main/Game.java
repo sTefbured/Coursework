@@ -53,6 +53,7 @@ public class Game extends Canvas {
     private Credits credits;
     private GameOver gameOver;
     private Pause pause;
+    private GameLoop gameLoop;
 
     private Game() {
         handler = new Handler(this);
@@ -68,6 +69,7 @@ public class Game extends Canvas {
         gameOver = new GameOver(this);
         pause = new Pause(this);
 
+        gameLoop = new GameLoop(this);
         new Window(WINDOW_WIDTH, WINDOW_HEIGHT, TITLE, iconImage, this);
     }
 
@@ -122,73 +124,15 @@ public class Game extends Canvas {
 
     private void run() {
         initGameObjects();
-        long lastTime = System.nanoTime();
-        long currentTime;
-        final double oneSecond = 1000000000;
-        double updatesPerSec = 60;
-        double secPerUpdate = oneSecond / updatesPerSec;
-        double delta = 0;
-        long time = lastTime;
-        int updates = 0;
-        int frames = 0;
-
-        while (isRunning) {
-            if (currentState == State.PAUSE) {
-                if (currentState.isChanged) {
-                    removeKeyListener(keyInput);
-                }
-                loadMenu(pause, (Graphics2D) bufferStrategy.getDrawGraphics());
-                bufferStrategy.show();
-                continue;
-            } else if ((currentState == State.RUNNING) && currentState.isChanged) {
-                removeKeyListener(pause);
-                addKeyListener(keyInput);
-                currentState.isChanged = false;
-                lastTime = System.nanoTime();
-            }
-            currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / secPerUpdate;
-            lastTime = currentTime;
-            while (delta >= 1) {
-                updateLevel();
-                updates++;
-                delta--;
-            }
-            renderLevel();
-            frames++;
-
-            if (System.nanoTime() - time >= oneSecond) {
-                time += oneSecond;
-                log.debug("FPS: " + frames + " updates: " + updates);
-                updates = frames = 0;
-            }
-
-            if (!isRunning) {
-                if (handler.getPlayer().isDead()) {
-                    handler.getPlayer().setDead(false);
-                    currentState = State.GAME_OVER;
-                    currentState.isChanged = true;
-                    removeKeyListener(keyInput);
-                    handler.clearLevel();
-                } else if (LevelLoader.getCurrentLevel() < LevelLoader.getNumberOfLevels()) {
-                    levelLoader.loadLevel();
-                    isRunning = true;
-                } else {    //TODO: Add "congratulations" menu, maybe scores
-                    removeKeyListener(keyInput);
-                    handler.clearLevel();
-                    currentState = State.MAIN_MENU;
-                    currentState.isChanged = true;
-                }
-            }
-        }
+        gameLoop.startLoop();
         handler.clearLevel();
     }
 
-    private void updateLevel() {
+    public void updateLevel() {
         handler.update();
     }
 
-    private void renderLevel() {
+    public void renderLevel() {
         if (handler.getPlayer() == null) {
             return;
         }
@@ -206,7 +150,7 @@ public class Game extends Canvas {
         return textures;
     }
 
-    private void loadMenu(Menu menu, Graphics2D graphics2D) {
+    public void loadMenu(Menu menu, Graphics2D graphics2D) {
         if (currentState.isChanged) {
             addKeyListener(menu);
             currentState.isChanged = false;
@@ -222,7 +166,11 @@ public class Game extends Canvas {
         return font2;
     }
 
-    public static void  setRunning(boolean isRunning) {
+    public static boolean isRunning() {
+        return isRunning;
+    }
+
+    public static void setRunning(boolean isRunning) {
         Game.isRunning = isRunning;
     }
 
@@ -238,6 +186,26 @@ public class Game extends Canvas {
         this.currentState = currentState;
     }
 
+    public KeyInput getKeyInput() {
+        return keyInput;
+    }
+
+    public Pause getPause() {
+        return pause;
+    }
+
+    public BufferStrategy getBufStrategy() {
+        return bufferStrategy;
+    }
+
+    public Handler getHandler() {
+        return handler;
+    }
+
+    public LevelLoader getLevelLoader() {
+        return levelLoader;
+    }
+
     public enum State {
         MAIN_MENU,
         LEVELS_LIST,
@@ -248,6 +216,10 @@ public class Game extends Canvas {
         GAME_OVER;
 
         private boolean isChanged;
+
+        public boolean isChanged() {
+            return isChanged;
+        }
 
         public void setChanged(boolean isChanged) {
             this.isChanged = isChanged;

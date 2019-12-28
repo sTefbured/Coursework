@@ -1,3 +1,5 @@
 /.idea/
 /out/
 /MyGameProject.iml
+/res/log4j.properties
+/logs/
