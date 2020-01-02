@@ -54,6 +54,7 @@ public class Game extends Canvas {
     private GameOver gameOver;
     private Pause pause;
     private GameLoop gameLoop;
+    private Congratulations congratulations;
 
     private Game() {
         handler = new Handler(this);
@@ -68,6 +69,7 @@ public class Game extends Canvas {
         credits = new Credits(this);
         gameOver = new GameOver(this);
         pause = new Pause(this);
+        congratulations = new Congratulations(this);
 
         gameLoop = new GameLoop(this);
         new Window(WINDOW_WIDTH, WINDOW_HEIGHT, TITLE, iconImage, this);
@@ -108,6 +110,9 @@ public class Game extends Canvas {
                 break;
             case CREDITS:
                 loadMenu(credits, graphics2D);
+                break;
+            case CONGRATULATIONS:
+                loadMenu(congratulations, graphics2D);
                 break;
             case GAME_OVER:
                 loadMenu(gameOver, graphics2D);
@@ -213,6 +218,7 @@ public class Game extends Canvas {
         CREDITS,
         RUNNING,
         PAUSE,
+        CONGRATULATIONS,
         GAME_OVER;
 
         private boolean isChanged;

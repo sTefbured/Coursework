@@ -94,11 +94,10 @@ public class GameLoop {
         Game.setRunning(true);
     }
 
-    //TODO: Add "congratulations" menu, maybe scores
     private void gameFinished() {
         game.removeKeyListener(game.getKeyInput());
         game.getHandler().clearLevel();
-        game.setCurrentState(Game.State.MAIN_MENU);
+        game.setCurrentState(Game.State.CONGRATULATIONS);
         game.getCurrentState().setChanged(true);
     }
 }
